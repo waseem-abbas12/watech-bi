@@ -1,0 +1,3679 @@
+{
+  "success": true,
+  "status": "partial",
+  "mode": "existing_businesses",
+  "industry": "Canton, Stark County, OH",
+  "location": "Canton, OH, USA",
+  "requestedCount": 10,
+  "minimumScore": 40,
+  "totalDurationMs": 21282,
+  "stages": [
+    {
+      "stage": "BUSINESS_DISCOVERY",
+      "status": "skipped",
+      "recordsProcessed": 10,
+      "recordsSucceeded": 10,
+      "recordsFailed": 0,
+      "recordsSkipped": 10,
+      "durationMs": 0,
+      "details": {
+        "reason": "EXISTING_BUSINESS_SELECTED",
+        "count": 10,
+        "mode": "existing_businesses"
+      }
+    },
+    {
+      "stage": "BUSINESS_DEDUPLICATION",
+      "status": "completed",
+      "recordsProcessed": 10,
+      "recordsSucceeded": 10,
+      "recordsFailed": 0,
+      "recordsSkipped": 0,
+      "durationMs": 0,
+      "details": {
+        "deduplicatedCount": 0,
+        "finalCount": 10
+      }
+    },
+    {
+      "stage": "WEBSITE_AUDIT",
+      "status": "partial",
+      "recordsProcessed": 10,
+      "recordsSucceeded": 9,
+      "recordsFailed": 1,
+      "recordsSkipped": 0,
+      "durationMs": 20100
+    },
+    {
+      "stage": "CONTACT_EXTRACTION",
+      "status": "completed",
+      "recordsProcessed": 10,
+      "recordsSucceeded": 13,
+      "recordsFailed": 0,
+      "recordsSkipped": 0,
+      "durationMs": 135
+    },
+    {
+      "stage": "DECISION_MAKER_ANALYSIS",
+      "status": "completed",
+      "recordsProcessed": 13,
+      "recordsSucceeded": 0,
+      "recordsFailed": 0,
+      "recordsSkipped": 0,
+      "durationMs": 0,
+      "details": {
+        "decisionMakersIdentified": 0
+      }
+    },
+    {
+      "stage": "EMAIL_VERIFICATION",
+      "status": "completed",
+      "recordsProcessed": 3,
+      "recordsSucceeded": 3,
+      "recordsFailed": 0,
+      "recordsSkipped": 0,
+      "durationMs": 1046
+    },
+    {
+      "stage": "OPPORTUNITY_ANALYSIS",
+      "status": "completed",
+      "recordsProcessed": 10,
+      "recordsSucceeded": 10,
+      "recordsFailed": 0,
+      "recordsSkipped": 0,
+      "durationMs": 1
+    },
+    {
+      "stage": "LEAD_SCORING",
+      "status": "completed",
+      "recordsProcessed": 10,
+      "recordsSucceeded": 10,
+      "recordsFailed": 0,
+      "recordsSkipped": 0,
+      "durationMs": 0,
+      "details": {
+        "qualifiedCount": 0
+      }
+    },
+    {
+      "stage": "CRM_PERSISTENCE",
+      "status": "completed",
+      "recordsProcessed": 10,
+      "recordsSucceeded": 0,
+      "recordsFailed": 0,
+      "recordsSkipped": 10,
+      "durationMs": 0
+    },
+    {
+      "stage": "FOLLOW_UP_SCHEDULING",
+      "status": "completed",
+      "recordsProcessed": 0,
+      "recordsSucceeded": 0,
+      "recordsFailed": 0,
+      "recordsSkipped": 0,
+      "durationMs": 0
+    }
+  ],
+  "summary": {
+    "totalDiscovered": 10,
+    "deduplicated": 0,
+    "audited": 9,
+    "auditFailed": 1,
+    "auditSkipped": 0,
+    "contactsFound": 13,
+    "emailsVerified": 3,
+    "opportunitiesGenerated": 10,
+    "leadsScored": 10,
+    "leadsQualified": 0
+  },
+  "data": {
+    "project": {
+      "id": "proj-canton-hvac-real",
+      "name": "Canton HVAC Real World Validation",
+      "country": "USA",
+      "stateRegion": "OH",
+      "cityArea": "Canton",
+      "industryNiche": "Canton, Stark County, OH",
+      "businessModel": "commercial",
+      "watechServicesToEvaluate": [
+        "website_development",
+        "google_business_profile",
+        "conversion_optimization",
+        "crm",
+        "automation"
+      ],
+      "researchDepth": "deep",
+      "targetDiscoveryCount": 10,
+      "isDemo": false,
+      "createdAt": "2026-11-08T21:51:13.027Z",
+      "updatedAt": "2026-11-08T21:51:13.027Z"
+    },
+    "businesses": [
+      {
+        "id": "biz-canton-real-1",
+        "projectId": "proj-canton-hvac-real",
+        "officialName": "Elsass Heating & Cooling, Inc.",
+        "brandName": "Elsass Heating",
+        "domain": "elsassheat.com",
+        "websiteUrl": "https://elsassheat.com",
+        "hasWebsite": true,
+        "phone": "(330) 454-3713",
+        "fullAddress": "2011 Cleveland Ave SW, Canton, OH 44707",
+        "city": "Canton",
+        "state": "OH",
+        "country": "USA",
+        "serviceArea": "Canton, Stark County, OH",
+        "businessModel": "commercial",
+        "ownerVerificationStatus": "unverified",
+        "reviewRating": 4.9,
+        "reviewCount": 180,
+        "isDemo": false,
+        "sourceUrl": "https://elsassheat.com",
+        "verificationTimestamp": "2026-11-09T02:35:00Z",
+        "createdAt": "2026-11-09T02:35:00Z",
+        "updatedAt": "2026-11-09T02:44:00Z",
+        "status": "audited",
+        "queueStatus": "research_next"
+      },
+      {
+        "id": "biz-canton-real-2",
+        "projectId": "proj-canton-hvac-real",
+        "officialName": "Quality Heating & Cooling",
+        "brandName": "Quality Heating",
+        "domain": "qualityheatingandcooling.com",
+        "websiteUrl": "https://www.qualityheatingandcooling.com",
+        "hasWebsite": true,
+        "phone": "(330) 494-0997",
+        "fullAddress": "North Canton, OH 44720",
+        "city": "North Canton",
+        "state": "OH",
+        "country": "USA",
+        "serviceArea": "Canton, North Canton, Stark County, OH",
+        "businessModel": "commercial",
+        "ownerVerificationStatus": "unverified",
+        "reviewRating": 4.8,
+        "reviewCount": 340,
+        "isDemo": false,
+        "sourceUrl": "https://www.qualityheatingandcooling.com",
+        "verificationTimestamp": "2026-11-09T02:35:00Z",
+        "createdAt": "2026-11-09T02:35:00Z",
+        "updatedAt": "2026-11-09T02:44:00Z",
+        "status": "audited",
+        "queueStatus": "research_next"
+      },
+      {
+        "id": "biz-canton-real-3",
+        "projectId": "proj-canton-hvac-real",
+        "officialName": "Zoned Comfort Heating & Cooling, Inc.",
+        "brandName": "Zoned Comfort",
+        "domain": "zonedcomfort.com",
+        "websiteUrl": "https://www.zonedcomfort.com",
+        "hasWebsite": true,
+        "phone": "(330) 454-2596",
+        "fullAddress": "2531 Clarendon Ave NW, Canton, OH 44708",
+        "city": "Canton",
+        "state": "OH",
+        "country": "USA",
+        "serviceArea": "Canton & Stark County",
+        "businessModel": "commercial",
+        "ownerVerificationStatus": "unverified",
+        "reviewRating": 4.7,
+        "reviewCount": 95,
+        "isDemo": false,
+        "sourceUrl": "https://www.zonedcomfort.com",
+        "verificationTimestamp": "2026-11-09T02:35:00Z",
+        "createdAt": "2026-11-09T02:35:00Z",
+        "updatedAt": "2026-11-09T02:44:00Z",
+        "status": "audited",
+        "queueStatus": "research_next"
+      },
+      {
+        "id": "biz-canton-real-4",
+        "projectId": "proj-canton-hvac-real",
+        "officialName": "CKP Heating & Cooling, LLC",
+        "brandName": "CKP Heating",
+        "domain": "ckphvac.com",
+        "websiteUrl": "https://www.ckphvac.com",
+        "hasWebsite": true,
+        "phone": "(330) 791-3020",
+        "fullAddress": "Canton, OH 44706",
+        "city": "Canton",
+        "state": "OH",
+        "country": "USA",
+        "serviceArea": "Canton, Akron, Northeast Ohio",
+        "businessModel": "commercial",
+        "ownerVerificationStatus": "unverified",
+        "reviewRating": 4.9,
+        "reviewCount": 120,
+        "isDemo": false,
+        "sourceUrl": "https://www.ckphvac.com",
+        "verificationTimestamp": "2026-11-09T02:35:00Z",
+        "createdAt": "2026-11-09T02:35:00Z",
+        "updatedAt": "2026-11-09T02:44:00Z",
+        "status": "audited",
+        "queueStatus": "research_next"
+      },
+      {
+        "id": "biz-canton-real-5",
+        "projectId": "proj-canton-hvac-real",
+        "officialName": "Miracle Plumbing, Heating & Cooling",
+        "brandName": "Miracle Plumbing & Heating",
+        "domain": "miracleplumbingandheating.com",
+        "websiteUrl": "https://www.miracleplumbingandheating.com",
+        "hasWebsite": true,
+        "phone": "(330) 477-2402",
+        "fullAddress": "2121 Whipple Ave NW, Canton, OH 44708",
+        "city": "Canton",
+        "state": "OH",
+        "country": "USA",
+        "serviceArea": "Canton, Massillon, Stark County",
+        "businessModel": "commercial",
+        "ownerVerificationStatus": "unverified",
+        "reviewRating": 4.5,
+        "reviewCount": 60,
+        "isDemo": false,
+        "sourceUrl": "Carrier Dealer Directory / BBB Canton",
+        "verificationTimestamp": "2026-11-09T02:35:00Z",
+        "createdAt": "2026-11-09T02:35:00Z",
+        "updatedAt": "2026-11-09T02:44:00Z",
+        "status": "discovered",
+        "queueStatus": "research_next"
+      },
+      {
+        "id": "biz-canton-real-6",
+        "projectId": "proj-canton-hvac-real",
+        "officialName": "Beyond Best Services",
+        "brandName": "Beyond Best Services",
+        "domain": "beyondbestservices.com",
+        "websiteUrl": "https://www.beyondbestservices.com",
+        "hasWebsite": true,
+        "phone": "(330) 575-6440",
+        "fullAddress": "7110 Whipple Ave NW, North Canton, OH 44720",
+        "city": "North Canton",
+        "state": "OH",
+        "country": "USA",
+        "serviceArea": "Canton, North Canton, Plain Township",
+        "businessModel": "commercial",
+        "ownerVerificationStatus": "unverified",
+        "reviewRating": 4.9,
+        "reviewCount": 85,
+        "isDemo": false,
+        "sourceUrl": "https://www.beyondbestservices.com",
+        "verificationTimestamp": "2026-11-09T02:35:00Z",
+        "createdAt": "2026-11-09T02:35:00Z",
+        "updatedAt": "2026-11-09T02:44:00Z",
+        "status": "audited",
+        "queueStatus": "research_next"
+      },
+      {
+        "id": "biz-canton-real-7",
+        "projectId": "proj-canton-hvac-real",
+        "officialName": "Foster's Heating & Air",
+        "brandName": "Foster's Heating",
+        "domain": "fostersheatingair.com",
+        "websiteUrl": "https://fostersheatingair.com",
+        "hasWebsite": true,
+        "phone": "(330) 418-0673",
+        "fullAddress": "2321 Energy Dr, Louisville, OH 44641",
+        "city": "Canton Area",
+        "state": "OH",
+        "country": "USA",
+        "serviceArea": "Canton, Louisville, Stark County",
+        "businessModel": "commercial",
+        "ownerVerificationStatus": "unverified",
+        "reviewRating": 4.8,
+        "reviewCount": 70,
+        "isDemo": false,
+        "sourceUrl": "https://fostersheatingair.com",
+        "verificationTimestamp": "2026-11-09T02:35:00Z",
+        "createdAt": "2026-11-09T02:35:00Z",
+        "updatedAt": "2026-11-09T02:44:00Z",
+        "status": "audited",
+        "queueStatus": "research_next"
+      },
+      {
+        "id": "biz-canton-real-8",
+        "projectId": "proj-canton-hvac-real",
+        "officialName": "Shanklin Heating, Air Conditioning, & Electric",
+        "brandName": "Shanklin Heating",
+        "domain": "shanklinheatingandcooling.com",
+        "websiteUrl": "https://www.shanklinheatingandcooling.com",
+        "hasWebsite": true,
+        "phone": "(330) 818-2630",
+        "fullAddress": "2026 Alabama Ave SW, Dalton, OH 44618",
+        "city": "Canton / Dalton",
+        "state": "OH",
+        "country": "USA",
+        "serviceArea": "Canton, Massillon, Stark & Wayne Counties",
+        "businessModel": "commercial",
+        "ownerVerificationStatus": "unverified",
+        "reviewRating": 4.9,
+        "reviewCount": 450,
+        "isDemo": false,
+        "sourceUrl": "https://www.shanklinheatingandcooling.com",
+        "verificationTimestamp": "2026-11-09T02:35:00Z",
+        "createdAt": "2026-11-09T02:35:00Z",
+        "updatedAt": "2026-11-09T02:44:00Z",
+        "status": "audited",
+        "queueStatus": "research_next"
+      },
+      {
+        "id": "biz-canton-real-9",
+        "projectId": "proj-canton-hvac-real",
+        "officialName": "Bryant Heating & Cooling LLC",
+        "brandName": "Bryant Heating",
+        "domain": "bryantheatingllc.com",
+        "websiteUrl": "https://bryantheatingllc.com",
+        "hasWebsite": true,
+        "phone": "(330) 452-9596",
+        "fullAddress": "3316 12th St NW, Canton, OH 44708",
+        "city": "Canton",
+        "state": "OH",
+        "country": "USA",
+        "serviceArea": "Canton, OH",
+        "businessModel": "commercial",
+        "ownerVerificationStatus": "unverified",
+        "reviewRating": 4.6,
+        "reviewCount": 40,
+        "isDemo": false,
+        "sourceUrl": "Canton Local Business Registry",
+        "verificationTimestamp": "2026-11-09T02:35:00Z",
+        "createdAt": "2026-11-09T02:35:00Z",
+        "updatedAt": "2026-11-09T02:44:00Z",
+        "status": "audited",
+        "queueStatus": "research_next"
+      },
+      {
+        "id": "biz-canton-real-10",
+        "projectId": "proj-canton-hvac-real",
+        "officialName": "Canton HVAC Co.",
+        "brandName": "Canton HVAC",
+        "domain": "cantonhvacco.com",
+        "websiteUrl": "https://cantonhvacco.com",
+        "hasWebsite": true,
+        "phone": "(330) 552-0542",
+        "fullAddress": "Canton, OH 44702",
+        "city": "Canton",
+        "state": "OH",
+        "country": "USA",
+        "serviceArea": "Canton Downtown & Metro Area",
+        "businessModel": "commercial",
+        "ownerVerificationStatus": "unverified",
+        "reviewRating": 4.7,
+        "reviewCount": 50,
+        "isDemo": false,
+        "sourceUrl": "https://cantonhvacco.com",
+        "verificationTimestamp": "2026-11-09T02:35:00Z",
+        "createdAt": "2026-11-09T02:35:00Z",
+        "updatedAt": "2026-11-09T02:44:00Z",
+        "status": "audited",
+        "queueStatus": "research_next"
+      }
+    ],
+    "audits": [
+      {
+        "id": "audit-biz-canton-real-1",
+        "businessId": "biz-canton-real-1",
+        "projectId": "proj-canton-hvac-real",
+        "targetUrl": "https://elsassheat.com",
+        "totalScore": 84,
+        "grade": "A",
+        "inspectedAt": "2026-11-08T21:51:14.209Z",
+        "responseTimeMs": 563,
+        "httpStatus": 200,
+        "hasSsl": true,
+        "isAutomated": true,
+        "scoringRulesVersion": "2.0.0",
+        "dimensions": {
+          "technicalHealth": 84,
+          "seoReadiness": 75,
+          "performance": 80,
+          "conversionReadiness": 60,
+          "userExperience": 80,
+          "trustAndCredibility": 85
+        },
+        "robotsTxtAvailable": true,
+        "sitemapAvailable": true,
+        "categories": [
+          {
+            "category": "existence_and_accessibility",
+            "categoryName": "Existence & Accessibility",
+            "score": 90,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "HTTP Status 200, Response Time 563ms"
+          },
+          {
+            "category": "visual_credibility",
+            "categoryName": "Visual Credibility",
+            "score": 80,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Viewport configured for responsive devices"
+          },
+          {
+            "category": "mobile_responsiveness",
+            "categoryName": "Mobile Responsiveness",
+            "score": 85,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Mobile viewport detected"
+          },
+          {
+            "category": "performance_and_speed",
+            "categoryName": "Performance & Speed",
+            "score": 85,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Server response latency: 563ms"
+          },
+          {
+            "category": "technical_seo",
+            "categoryName": "Technical SEO",
+            "score": 80,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Title: Present, Meta Description: Present"
+          },
+          {
+            "category": "local_seo",
+            "categoryName": "Local SEO",
+            "score": 85,
+            "weight": 15,
+            "status": "warning",
+            "findingsCount": 0,
+            "summary": "robots.txt: Yes, sitemap.xml: Yes"
+          }
+        ],
+        "findings": []
+      },
+      {
+        "id": "audit-biz-canton-real-2",
+        "businessId": "biz-canton-real-2",
+        "projectId": "proj-canton-hvac-real",
+        "targetUrl": "https://www.qualityheatingandcooling.com",
+        "totalScore": 84,
+        "grade": "A",
+        "inspectedAt": "2026-11-08T21:51:16.900Z",
+        "responseTimeMs": 689,
+        "httpStatus": 200,
+        "hasSsl": true,
+        "isAutomated": true,
+        "scoringRulesVersion": "2.0.0",
+        "dimensions": {
+          "technicalHealth": 84,
+          "seoReadiness": 75,
+          "performance": 80,
+          "conversionReadiness": 60,
+          "userExperience": 80,
+          "trustAndCredibility": 85
+        },
+        "robotsTxtAvailable": true,
+        "sitemapAvailable": true,
+        "categories": [
+          {
+            "category": "existence_and_accessibility",
+            "categoryName": "Existence & Accessibility",
+            "score": 90,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "HTTP Status 200, Response Time 689ms"
+          },
+          {
+            "category": "visual_credibility",
+            "categoryName": "Visual Credibility",
+            "score": 80,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Viewport configured for responsive devices"
+          },
+          {
+            "category": "mobile_responsiveness",
+            "categoryName": "Mobile Responsiveness",
+            "score": 85,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Mobile viewport detected"
+          },
+          {
+            "category": "performance_and_speed",
+            "categoryName": "Performance & Speed",
+            "score": 85,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Server response latency: 689ms"
+          },
+          {
+            "category": "technical_seo",
+            "categoryName": "Technical SEO",
+            "score": 80,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Title: Present, Meta Description: Present"
+          },
+          {
+            "category": "local_seo",
+            "categoryName": "Local SEO",
+            "score": 85,
+            "weight": 15,
+            "status": "warning",
+            "findingsCount": 0,
+            "summary": "robots.txt: Yes, sitemap.xml: Yes"
+          }
+        ],
+        "findings": []
+      },
+      {
+        "id": "audit-biz-canton-real-3",
+        "businessId": "biz-canton-real-3",
+        "projectId": "proj-canton-hvac-real",
+        "targetUrl": "https://www.zonedcomfort.com",
+        "totalScore": 84,
+        "grade": "A",
+        "inspectedAt": "2026-11-08T21:51:17.407Z",
+        "responseTimeMs": 285,
+        "httpStatus": 200,
+        "hasSsl": true,
+        "isAutomated": true,
+        "scoringRulesVersion": "2.0.0",
+        "dimensions": {
+          "technicalHealth": 84,
+          "seoReadiness": 75,
+          "performance": 80,
+          "conversionReadiness": 60,
+          "userExperience": 80,
+          "trustAndCredibility": 85
+        },
+        "robotsTxtAvailable": true,
+        "sitemapAvailable": true,
+        "categories": [
+          {
+            "category": "existence_and_accessibility",
+            "categoryName": "Existence & Accessibility",
+            "score": 90,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "HTTP Status 200, Response Time 285ms"
+          },
+          {
+            "category": "visual_credibility",
+            "categoryName": "Visual Credibility",
+            "score": 80,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Viewport configured for responsive devices"
+          },
+          {
+            "category": "mobile_responsiveness",
+            "categoryName": "Mobile Responsiveness",
+            "score": 85,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Mobile viewport detected"
+          },
+          {
+            "category": "performance_and_speed",
+            "categoryName": "Performance & Speed",
+            "score": 85,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Server response latency: 285ms"
+          },
+          {
+            "category": "technical_seo",
+            "categoryName": "Technical SEO",
+            "score": 80,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Title: Present, Meta Description: Present"
+          },
+          {
+            "category": "local_seo",
+            "categoryName": "Local SEO",
+            "score": 85,
+            "weight": 15,
+            "status": "warning",
+            "findingsCount": 0,
+            "summary": "robots.txt: Yes, sitemap.xml: Yes"
+          }
+        ],
+        "findings": []
+      },
+      {
+        "id": "audit-biz-canton-real-4",
+        "businessId": "biz-canton-real-4",
+        "projectId": "proj-canton-hvac-real",
+        "targetUrl": "https://www.ckphvac.com",
+        "totalScore": 84,
+        "grade": "A",
+        "inspectedAt": "2026-11-08T21:51:19.506Z",
+        "responseTimeMs": 399,
+        "httpStatus": 200,
+        "hasSsl": true,
+        "isAutomated": true,
+        "scoringRulesVersion": "2.0.0",
+        "dimensions": {
+          "technicalHealth": 84,
+          "seoReadiness": 75,
+          "performance": 80,
+          "conversionReadiness": 60,
+          "userExperience": 80,
+          "trustAndCredibility": 85
+        },
+        "robotsTxtAvailable": true,
+        "sitemapAvailable": true,
+        "categories": [
+          {
+            "category": "existence_and_accessibility",
+            "categoryName": "Existence & Accessibility",
+            "score": 90,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "HTTP Status 200, Response Time 399ms"
+          },
+          {
+            "category": "visual_credibility",
+            "categoryName": "Visual Credibility",
+            "score": 80,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Viewport configured for responsive devices"
+          },
+          {
+            "category": "mobile_responsiveness",
+            "categoryName": "Mobile Responsiveness",
+            "score": 85,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Mobile viewport detected"
+          },
+          {
+            "category": "performance_and_speed",
+            "categoryName": "Performance & Speed",
+            "score": 85,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Server response latency: 399ms"
+          },
+          {
+            "category": "technical_seo",
+            "categoryName": "Technical SEO",
+            "score": 80,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Title: Present, Meta Description: Present"
+          },
+          {
+            "category": "local_seo",
+            "categoryName": "Local SEO",
+            "score": 85,
+            "weight": 15,
+            "status": "warning",
+            "findingsCount": 0,
+            "summary": "robots.txt: Yes, sitemap.xml: Yes"
+          }
+        ],
+        "findings": []
+      },
+      {
+        "id": "audit-biz-canton-real-6",
+        "businessId": "biz-canton-real-6",
+        "projectId": "proj-canton-hvac-real",
+        "targetUrl": "https://www.beyondbestservices.com",
+        "totalScore": 77,
+        "grade": "B",
+        "inspectedAt": "2026-11-08T21:51:26.560Z",
+        "responseTimeMs": 3853,
+        "httpStatus": 200,
+        "hasSsl": true,
+        "isAutomated": true,
+        "scoringRulesVersion": "2.0.0",
+        "dimensions": {
+          "technicalHealth": 77,
+          "seoReadiness": 75,
+          "performance": 50,
+          "conversionReadiness": 60,
+          "userExperience": 80,
+          "trustAndCredibility": 85
+        },
+        "robotsTxtAvailable": true,
+        "sitemapAvailable": true,
+        "categories": [
+          {
+            "category": "existence_and_accessibility",
+            "categoryName": "Existence & Accessibility",
+            "score": 90,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "HTTP Status 200, Response Time 3853ms"
+          },
+          {
+            "category": "visual_credibility",
+            "categoryName": "Visual Credibility",
+            "score": 80,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Viewport configured for responsive devices"
+          },
+          {
+            "category": "mobile_responsiveness",
+            "categoryName": "Mobile Responsiveness",
+            "score": 85,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Mobile viewport detected"
+          },
+          {
+            "category": "performance_and_speed",
+            "categoryName": "Performance & Speed",
+            "score": 40,
+            "weight": 15,
+            "status": "warning",
+            "findingsCount": 0,
+            "summary": "Server response latency: 3853ms"
+          },
+          {
+            "category": "technical_seo",
+            "categoryName": "Technical SEO",
+            "score": 80,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Title: Present, Meta Description: Present"
+          },
+          {
+            "category": "local_seo",
+            "categoryName": "Local SEO",
+            "score": 85,
+            "weight": 15,
+            "status": "warning",
+            "findingsCount": 0,
+            "summary": "robots.txt: Yes, sitemap.xml: Yes"
+          }
+        ],
+        "findings": []
+      },
+      {
+        "id": "audit-biz-canton-real-7",
+        "businessId": "biz-canton-real-7",
+        "projectId": "proj-canton-hvac-real",
+        "targetUrl": "https://fostersheatingair.com",
+        "totalScore": 84,
+        "grade": "A",
+        "inspectedAt": "2026-11-08T21:51:27.037Z",
+        "responseTimeMs": 259,
+        "httpStatus": 200,
+        "hasSsl": true,
+        "isAutomated": true,
+        "scoringRulesVersion": "2.0.0",
+        "dimensions": {
+          "technicalHealth": 84,
+          "seoReadiness": 75,
+          "performance": 80,
+          "conversionReadiness": 60,
+          "userExperience": 80,
+          "trustAndCredibility": 85
+        },
+        "robotsTxtAvailable": true,
+        "sitemapAvailable": true,
+        "categories": [
+          {
+            "category": "existence_and_accessibility",
+            "categoryName": "Existence & Accessibility",
+            "score": 90,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "HTTP Status 200, Response Time 259ms"
+          },
+          {
+            "category": "visual_credibility",
+            "categoryName": "Visual Credibility",
+            "score": 80,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Viewport configured for responsive devices"
+          },
+          {
+            "category": "mobile_responsiveness",
+            "categoryName": "Mobile Responsiveness",
+            "score": 85,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Mobile viewport detected"
+          },
+          {
+            "category": "performance_and_speed",
+            "categoryName": "Performance & Speed",
+            "score": 85,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Server response latency: 259ms"
+          },
+          {
+            "category": "technical_seo",
+            "categoryName": "Technical SEO",
+            "score": 80,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Title: Present, Meta Description: Present"
+          },
+          {
+            "category": "local_seo",
+            "categoryName": "Local SEO",
+            "score": 85,
+            "weight": 15,
+            "status": "warning",
+            "findingsCount": 0,
+            "summary": "robots.txt: Yes, sitemap.xml: Yes"
+          }
+        ],
+        "findings": []
+      },
+      {
+        "id": "audit-biz-canton-real-8",
+        "businessId": "biz-canton-real-8",
+        "projectId": "proj-canton-hvac-real",
+        "targetUrl": "https://www.shanklinheatingandcooling.com",
+        "totalScore": 81,
+        "grade": "A",
+        "inspectedAt": "2026-11-08T21:51:30.417Z",
+        "responseTimeMs": 1315,
+        "httpStatus": 200,
+        "hasSsl": true,
+        "isAutomated": true,
+        "scoringRulesVersion": "2.0.0",
+        "dimensions": {
+          "technicalHealth": 81,
+          "seoReadiness": 75,
+          "performance": 80,
+          "conversionReadiness": 60,
+          "userExperience": 80,
+          "trustAndCredibility": 85
+        },
+        "robotsTxtAvailable": true,
+        "sitemapAvailable": true,
+        "categories": [
+          {
+            "category": "existence_and_accessibility",
+            "categoryName": "Existence & Accessibility",
+            "score": 90,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "HTTP Status 200, Response Time 1315ms"
+          },
+          {
+            "category": "visual_credibility",
+            "categoryName": "Visual Credibility",
+            "score": 80,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Viewport configured for responsive devices"
+          },
+          {
+            "category": "mobile_responsiveness",
+            "categoryName": "Mobile Responsiveness",
+            "score": 85,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Mobile viewport detected"
+          },
+          {
+            "category": "performance_and_speed",
+            "categoryName": "Performance & Speed",
+            "score": 65,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Server response latency: 1315ms"
+          },
+          {
+            "category": "technical_seo",
+            "categoryName": "Technical SEO",
+            "score": 80,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Title: Present, Meta Description: Present"
+          },
+          {
+            "category": "local_seo",
+            "categoryName": "Local SEO",
+            "score": 85,
+            "weight": 15,
+            "status": "warning",
+            "findingsCount": 0,
+            "summary": "robots.txt: Yes, sitemap.xml: Yes"
+          }
+        ],
+        "findings": []
+      },
+      {
+        "id": "audit-biz-canton-real-9",
+        "businessId": "biz-canton-real-9",
+        "projectId": "proj-canton-hvac-real",
+        "targetUrl": "https://bryantheatingllc.com",
+        "totalScore": 84,
+        "grade": "A",
+        "inspectedAt": "2026-11-08T21:51:32.008Z",
+        "responseTimeMs": 811,
+        "httpStatus": 200,
+        "hasSsl": true,
+        "isAutomated": true,
+        "scoringRulesVersion": "2.0.0",
+        "dimensions": {
+          "technicalHealth": 84,
+          "seoReadiness": 75,
+          "performance": 80,
+          "conversionReadiness": 60,
+          "userExperience": 80,
+          "trustAndCredibility": 85
+        },
+        "robotsTxtAvailable": true,
+        "sitemapAvailable": true,
+        "categories": [
+          {
+            "category": "existence_and_accessibility",
+            "categoryName": "Existence & Accessibility",
+            "score": 90,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "HTTP Status 200, Response Time 811ms"
+          },
+          {
+            "category": "visual_credibility",
+            "categoryName": "Visual Credibility",
+            "score": 80,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Viewport configured for responsive devices"
+          },
+          {
+            "category": "mobile_responsiveness",
+            "categoryName": "Mobile Responsiveness",
+            "score": 85,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Mobile viewport detected"
+          },
+          {
+            "category": "performance_and_speed",
+            "categoryName": "Performance & Speed",
+            "score": 85,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Server response latency: 811ms"
+          },
+          {
+            "category": "technical_seo",
+            "categoryName": "Technical SEO",
+            "score": 80,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Title: Present, Meta Description: Present"
+          },
+          {
+            "category": "local_seo",
+            "categoryName": "Local SEO",
+            "score": 85,
+            "weight": 15,
+            "status": "warning",
+            "findingsCount": 0,
+            "summary": "robots.txt: Yes, sitemap.xml: Yes"
+          }
+        ],
+        "findings": []
+      },
+      {
+        "id": "audit-biz-canton-real-10",
+        "businessId": "biz-canton-real-10",
+        "projectId": "proj-canton-hvac-real",
+        "targetUrl": "https://cantonhvacco.com",
+        "totalScore": 84,
+        "grade": "A",
+        "inspectedAt": "2026-11-08T21:51:33.126Z",
+        "responseTimeMs": 545,
+        "httpStatus": 200,
+        "hasSsl": true,
+        "isAutomated": true,
+        "scoringRulesVersion": "2.0.0",
+        "dimensions": {
+          "technicalHealth": 84,
+          "seoReadiness": 75,
+          "performance": 80,
+          "conversionReadiness": 60,
+          "userExperience": 80,
+          "trustAndCredibility": 85
+        },
+        "robotsTxtAvailable": true,
+        "sitemapAvailable": true,
+        "categories": [
+          {
+            "category": "existence_and_accessibility",
+            "categoryName": "Existence & Accessibility",
+            "score": 90,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "HTTP Status 200, Response Time 545ms"
+          },
+          {
+            "category": "visual_credibility",
+            "categoryName": "Visual Credibility",
+            "score": 80,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Viewport configured for responsive devices"
+          },
+          {
+            "category": "mobile_responsiveness",
+            "categoryName": "Mobile Responsiveness",
+            "score": 85,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Mobile viewport detected"
+          },
+          {
+            "category": "performance_and_speed",
+            "categoryName": "Performance & Speed",
+            "score": 85,
+            "weight": 15,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Server response latency: 545ms"
+          },
+          {
+            "category": "technical_seo",
+            "categoryName": "Technical SEO",
+            "score": 80,
+            "weight": 20,
+            "status": "passed",
+            "findingsCount": 0,
+            "summary": "Title: Present, Meta Description: Present"
+          },
+          {
+            "category": "local_seo",
+            "categoryName": "Local SEO",
+            "score": 85,
+            "weight": 15,
+            "status": "warning",
+            "findingsCount": 0,
+            "summary": "robots.txt: Yes, sitemap.xml: Yes"
+          }
+        ],
+        "findings": []
+      }
+    ],
+    "contacts": [
+      {
+        "id": "ct-reception-biz-canton-real-1",
+        "businessId": "biz-canton-real-1",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Elsass Heating & Cooling, Inc. Office",
+        "roleOrTitle": "Office & Dispatch",
+        "phone": "(330) 454-3713",
+        "company": "Elsass Heating & Cooling, Inc.",
+        "verificationStatus": "verified",
+        "confidence": 0.9,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff",
+        "notes": "Dispatch reception contact"
+      },
+      {
+        "id": "ct-reception-biz-canton-real-2",
+        "businessId": "biz-canton-real-2",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Quality Heating & Cooling Office",
+        "roleOrTitle": "Office & Dispatch",
+        "phone": "(330) 494-0997",
+        "company": "Quality Heating & Cooling",
+        "verificationStatus": "verified",
+        "confidence": 0.9,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff",
+        "notes": "Dispatch reception contact"
+      },
+      {
+        "id": "ct-reception-biz-canton-real-3",
+        "businessId": "biz-canton-real-3",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Zoned Comfort Heating & Cooling, Inc. Office",
+        "roleOrTitle": "Office & Dispatch",
+        "phone": "(330) 454-2596",
+        "company": "Zoned Comfort Heating & Cooling, Inc.",
+        "verificationStatus": "verified",
+        "confidence": 0.9,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff",
+        "notes": "Dispatch reception contact"
+      },
+      {
+        "id": "ct-reception-biz-canton-real-4",
+        "businessId": "biz-canton-real-4",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "CKP Heating & Cooling, LLC Office",
+        "roleOrTitle": "Office & Dispatch",
+        "phone": "(330) 791-3020",
+        "company": "CKP Heating & Cooling, LLC",
+        "verificationStatus": "verified",
+        "confidence": 0.9,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff",
+        "notes": "Dispatch reception contact"
+      },
+      {
+        "id": "ct-reception-biz-canton-real-5",
+        "businessId": "biz-canton-real-5",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Miracle Plumbing, Heating & Cooling Office",
+        "roleOrTitle": "Office & Dispatch",
+        "phone": "(330) 477-2402",
+        "company": "Miracle Plumbing, Heating & Cooling",
+        "verificationStatus": "verified",
+        "confidence": 0.9,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff",
+        "notes": "Dispatch reception contact"
+      },
+      {
+        "id": "ct-reception-biz-canton-real-6",
+        "businessId": "biz-canton-real-6",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Beyond Best Services Office",
+        "roleOrTitle": "Office & Dispatch",
+        "phone": "(330) 575-6440",
+        "company": "Beyond Best Services",
+        "verificationStatus": "verified",
+        "confidence": 0.9,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff",
+        "notes": "Dispatch reception contact"
+      },
+      {
+        "id": "ct-biz-canton-real-6-beyondbestservices-g",
+        "businessId": "biz-canton-real-6",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Direct Contact",
+        "roleOrTitle": "Team / Executive Member",
+        "email": "beyondbestservices@gmail.com",
+        "phone": "(330) 575-6440",
+        "company": "Beyond Best Services",
+        "verificationStatus": "verified",
+        "confidence": 0.8,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff"
+      },
+      {
+        "id": "ct-reception-biz-canton-real-7",
+        "businessId": "biz-canton-real-7",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Foster's Heating & Air Office",
+        "roleOrTitle": "Office & Dispatch",
+        "phone": "(330) 418-0673",
+        "company": "Foster's Heating & Air",
+        "verificationStatus": "verified",
+        "confidence": 0.9,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff",
+        "notes": "Dispatch reception contact"
+      },
+      {
+        "id": "ct-biz-canton-real-7-ryan-fostersheatinga",
+        "businessId": "biz-canton-real-7",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Direct Contact",
+        "roleOrTitle": "Team / Executive Member",
+        "email": "ryan@fostersheatingair.com",
+        "phone": "+13304180673",
+        "company": "Foster's Heating & Air",
+        "verificationStatus": "verified",
+        "confidence": 0.8,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff"
+      },
+      {
+        "id": "ct-reception-biz-canton-real-8",
+        "businessId": "biz-canton-real-8",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Shanklin Heating, Air Conditioning, & Electric Office",
+        "roleOrTitle": "Office & Dispatch",
+        "phone": "(330) 818-2630",
+        "company": "Shanklin Heating, Air Conditioning, & Electric",
+        "verificationStatus": "verified",
+        "confidence": 0.9,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff",
+        "notes": "Dispatch reception contact"
+      },
+      {
+        "id": "ct-biz-canton-real-8-marketing-shanklinhe",
+        "businessId": "biz-canton-real-8",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Direct Contact",
+        "roleOrTitle": "Team / Executive Member",
+        "email": "marketing@shanklinheating.com",
+        "phone": "(330) 818-2630",
+        "company": "Shanklin Heating, Air Conditioning, & Electric",
+        "verificationStatus": "verified",
+        "confidence": 0.8,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff"
+      },
+      {
+        "id": "ct-reception-biz-canton-real-9",
+        "businessId": "biz-canton-real-9",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Bryant Heating & Cooling LLC Office",
+        "roleOrTitle": "Office & Dispatch",
+        "phone": "(330) 452-9596",
+        "company": "Bryant Heating & Cooling LLC",
+        "verificationStatus": "verified",
+        "confidence": 0.9,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff",
+        "notes": "Dispatch reception contact"
+      },
+      {
+        "id": "ct-reception-biz-canton-real-10",
+        "businessId": "biz-canton-real-10",
+        "projectId": "proj-canton-hvac-real",
+        "fullName": "Canton HVAC Co. Office",
+        "roleOrTitle": "Office & Dispatch",
+        "phone": "(330) 552-0542",
+        "company": "Canton HVAC Co.",
+        "verificationStatus": "verified",
+        "confidence": 0.9,
+        "contactSourceLabel": "official_company_source",
+        "isDecisionMaker": false,
+        "decisionMakerTier": "general_staff",
+        "notes": "Dispatch reception contact"
+      }
+    ],
+    "emailRecords": [
+      {
+        "id": "eml-beyondbestservices-gmail-com",
+        "businessId": "",
+        "projectId": "proj-canton-hvac-real",
+        "email": "beyondbestservices@gmail.com",
+        "emailType": "named_professional",
+        "discoverySource": "website",
+        "sourceUrl": "https://gmail.com",
+        "discoveryDate": "2026-11-08T21:51:33.262Z",
+        "sourceType": "website_scrape",
+        "confidence": 0.85,
+        "verificationStatus": "domain_passed_unconfirmed",
+        "syntaxValid": true,
+        "mxRecordsPresent": true,
+        "isDisposable": false,
+        "isRoleBased": false,
+        "isOutreachSafe": true,
+        "providerResponse": {
+          "mxRecords": [
+            "gmail-smtp-in.l.google.Com",
+            "alt1.gmail-smtp-in.l.google.Com",
+            "alt2.gmail-smtp-in.l.google.Com",
+            "alt3.gmail-smtp-in.l.google.Com",
+            "alt4.gmail-smtp-in.l.google.Com"
+          ],
+          "isDisposable": false,
+          "isRoleBased": false,
+          "verifiedViaDns": true
+        }
+      },
+      {
+        "id": "eml-ryan-fostersheatingair-com",
+        "businessId": "",
+        "projectId": "proj-canton-hvac-real",
+        "email": "ryan@fostersheatingair.com",
+        "emailType": "named_professional",
+        "discoverySource": "website",
+        "sourceUrl": "https://fostersheatingair.com",
+        "discoveryDate": "2026-11-08T21:51:33.268Z",
+        "sourceType": "website_scrape",
+        "confidence": 0.85,
+        "verificationStatus": "domain_passed_unconfirmed",
+        "syntaxValid": true,
+        "mxRecordsPresent": true,
+        "isDisposable": false,
+        "isRoleBased": false,
+        "isOutreachSafe": true,
+        "providerResponse": {
+          "mxRecords": [
+            "route3.mx.cloudflare.net",
+            "route1.mx.cloudflare.net",
+            "route2.mx.cloudflare.net"
+          ],
+          "isDisposable": false,
+          "isRoleBased": false,
+          "verifiedViaDns": true
+        }
+      },
+      {
+        "id": "eml-marketing-shanklinheating-com",
+        "businessId": "",
+        "projectId": "proj-canton-hvac-real",
+        "email": "marketing@shanklinheating.com",
+        "emailType": "named_professional",
+        "discoverySource": "website",
+        "sourceUrl": "https://shanklinheating.com",
+        "discoveryDate": "2026-11-08T21:51:33.303Z",
+        "sourceType": "website_scrape",
+        "confidence": 0.85,
+        "verificationStatus": "domain_passed_unconfirmed",
+        "syntaxValid": true,
+        "mxRecordsPresent": true,
+        "isDisposable": false,
+        "isRoleBased": false,
+        "isOutreachSafe": true,
+        "providerResponse": {
+          "mxRecords": [
+            "shanklinheating-com.mail.protection.outlook.com"
+          ],
+          "isDisposable": false,
+          "isRoleBased": false,
+          "verifiedViaDns": true
+        }
+      }
+    ],
+    "opportunities": [
+      {
+        "id": "opp-rep-biz-canton-real-1-5",
+        "businessId": "biz-canton-real-1",
+        "projectId": "proj-canton-hvac-real",
+        "identifiedProblem": "Strong 4.5+ star customer ratings are buried on third-party sites and not showcased on service quote pages.",
+        "evidence": "Verified 4.9★ rating across 180 public reviews.",
+        "businessRelevance": "Social proof placed directly next to quote submission buttons dramatically reduces prospect hesitation.",
+        "businessConsequence": "Prospects hesitate on high-ticket service quotes due to missing immediate credibility indicators.",
+        "recommendedSolution": "Integrate dynamic, verified review stream widget and testimonial highlights on high-intent landing pages.",
+        "relevantWatechService": "conversion_optimization",
+        "category": "reputation_management",
+        "priorityBand": "immediate_opportunity",
+        "scoreBreakdown": {
+          "businessImpact": 18,
+          "evidenceStrength": 25,
+          "serviceRelevance": 17,
+          "implementationFeasibility": 14,
+          "businessReadinessSignals": 8,
+          "totalScore": 82,
+          "scoreExplanation": "Verified 4.9★ rating across 180 public reviews not highlighted on website."
+        },
+        "smallestUsefulFirstStep": "Embed top 3 verified Google reviews with reviewer names directly below the quote form.",
+        "implementationComplexity": "low",
+        "effort": "low",
+        "impact": "medium",
+        "confidence": 0.9,
+        "suggestedOutreachAngle": "Congratulate them on their strong reputation and share a preview of how highlighting it can lift quote conversions.",
+        "status": "identified",
+        "createdAt": "2026-11-08T21:51:34.308Z"
+      },
+      {
+        "id": "opp-rep-biz-canton-real-2-5",
+        "businessId": "biz-canton-real-2",
+        "projectId": "proj-canton-hvac-real",
+        "identifiedProblem": "Strong 4.5+ star customer ratings are buried on third-party sites and not showcased on service quote pages.",
+        "evidence": "Verified 4.8★ rating across 340 public reviews.",
+        "businessRelevance": "Social proof placed directly next to quote submission buttons dramatically reduces prospect hesitation.",
+        "businessConsequence": "Prospects hesitate on high-ticket service quotes due to missing immediate credibility indicators.",
+        "recommendedSolution": "Integrate dynamic, verified review stream widget and testimonial highlights on high-intent landing pages.",
+        "relevantWatechService": "conversion_optimization",
+        "category": "reputation_management",
+        "priorityBand": "immediate_opportunity",
+        "scoreBreakdown": {
+          "businessImpact": 18,
+          "evidenceStrength": 25,
+          "serviceRelevance": 17,
+          "implementationFeasibility": 14,
+          "businessReadinessSignals": 8,
+          "totalScore": 82,
+          "scoreExplanation": "Verified 4.8★ rating across 340 public reviews not highlighted on website."
+        },
+        "smallestUsefulFirstStep": "Embed top 3 verified Google reviews with reviewer names directly below the quote form.",
+        "implementationComplexity": "low",
+        "effort": "low",
+        "impact": "medium",
+        "confidence": 0.9,
+        "suggestedOutreachAngle": "Congratulate them on their strong reputation and share a preview of how highlighting it can lift quote conversions.",
+        "status": "identified",
+        "createdAt": "2026-11-08T21:51:34.309Z"
+      },
+      {
+        "id": "opp-rep-biz-canton-real-3-5",
+        "businessId": "biz-canton-real-3",
+        "projectId": "proj-canton-hvac-real",
+        "identifiedProblem": "Strong 4.5+ star customer ratings are buried on third-party sites and not showcased on service quote pages.",
+        "evidence": "Verified 4.7★ rating across 95 public reviews.",
+        "businessRelevance": "Social proof placed directly next to quote submission buttons dramatically reduces prospect hesitation.",
+        "businessConsequence": "Prospects hesitate on high-ticket service quotes due to missing immediate credibility indicators.",
+        "recommendedSolution": "Integrate dynamic, verified review stream widget and testimonial highlights on high-intent landing pages.",
+        "relevantWatechService": "conversion_optimization",
+        "category": "reputation_management",
+        "priorityBand": "immediate_opportunity",
+        "scoreBreakdown": {
+          "businessImpact": 18,
+          "evidenceStrength": 25,
+          "serviceRelevance": 17,
+          "implementationFeasibility": 14,
+          "businessReadinessSignals": 8,
+          "totalScore": 82,
+          "scoreExplanation": "Verified 4.7★ rating across 95 public reviews not highlighted on website."
+        },
+        "smallestUsefulFirstStep": "Embed top 3 verified Google reviews with reviewer names directly below the quote form.",
+        "implementationComplexity": "low",
+        "effort": "low",
+        "impact": "medium",
+        "confidence": 0.9,
+        "suggestedOutreachAngle": "Congratulate them on their strong reputation and share a preview of how highlighting it can lift quote conversions.",
+        "status": "identified",
+        "createdAt": "2026-11-08T21:51:34.309Z"
+      },
+      {
+        "id": "opp-rep-biz-canton-real-4-5",
+        "businessId": "biz-canton-real-4",
+        "projectId": "proj-canton-hvac-real",
+        "identifiedProblem": "Strong 4.5+ star customer ratings are buried on third-party sites and not showcased on service quote pages.",
+        "evidence": "Verified 4.9★ rating across 120 public reviews.",
+        "businessRelevance": "Social proof placed directly next to quote submission buttons dramatically reduces prospect hesitation.",
+        "businessConsequence": "Prospects hesitate on high-ticket service quotes due to missing immediate credibility indicators.",
+        "recommendedSolution": "Integrate dynamic, verified review stream widget and testimonial highlights on high-intent landing pages.",
+        "relevantWatechService": "conversion_optimization",
+        "category": "reputation_management",
+        "priorityBand": "immediate_opportunity",
+        "scoreBreakdown": {
+          "businessImpact": 18,
+          "evidenceStrength": 25,
+          "serviceRelevance": 17,
+          "implementationFeasibility": 14,
+          "businessReadinessSignals": 8,
+          "totalScore": 82,
+          "scoreExplanation": "Verified 4.9★ rating across 120 public reviews not highlighted on website."
+        },
+        "smallestUsefulFirstStep": "Embed top 3 verified Google reviews with reviewer names directly below the quote form.",
+        "implementationComplexity": "low",
+        "effort": "low",
+        "impact": "medium",
+        "confidence": 0.9,
+        "suggestedOutreachAngle": "Congratulate them on their strong reputation and share a preview of how highlighting it can lift quote conversions.",
+        "status": "identified",
+        "createdAt": "2026-11-08T21:51:34.309Z"
+      },
+      {
+        "id": "opp-rep-biz-canton-real-5-5",
+        "businessId": "biz-canton-real-5",
+        "projectId": "proj-canton-hvac-real",
+        "identifiedProblem": "Strong 4.5+ star customer ratings are buried on third-party sites and not showcased on service quote pages.",
+        "evidence": "Verified 4.5★ rating across 60 public reviews.",
+        "businessRelevance": "Social proof placed directly next to quote submission buttons dramatically reduces prospect hesitation.",
+        "businessConsequence": "Prospects hesitate on high-ticket service quotes due to missing immediate credibility indicators.",
+        "recommendedSolution": "Integrate dynamic, verified review stream widget and testimonial highlights on high-intent landing pages.",
+        "relevantWatechService": "conversion_optimization",
+        "category": "reputation_management",
+        "priorityBand": "immediate_opportunity",
+        "scoreBreakdown": {
+          "businessImpact": 18,
+          "evidenceStrength": 25,
+          "serviceRelevance": 17,
+          "implementationFeasibility": 14,
+          "businessReadinessSignals": 8,
+          "totalScore": 82,
+          "scoreExplanation": "Verified 4.5★ rating across 60 public reviews not highlighted on website."
+        },
+        "smallestUsefulFirstStep": "Embed top 3 verified Google reviews with reviewer names directly below the quote form.",
+        "implementationComplexity": "low",
+        "effort": "low",
+        "impact": "medium",
+        "confidence": 0.9,
+        "suggestedOutreachAngle": "Congratulate them on their strong reputation and share a preview of how highlighting it can lift quote conversions.",
+        "status": "identified",
+        "createdAt": "2026-11-08T21:51:34.309Z"
+      },
+      {
+        "id": "opp-rep-biz-canton-real-6-5",
+        "businessId": "biz-canton-real-6",
+        "projectId": "proj-canton-hvac-real",
+        "identifiedProblem": "Strong 4.5+ star customer ratings are buried on third-party sites and not showcased on service quote pages.",
+        "evidence": "Verified 4.9★ rating across 85 public reviews.",
+        "businessRelevance": "Social proof placed directly next to quote submission buttons dramatically reduces prospect hesitation.",
+        "businessConsequence": "Prospects hesitate on high-ticket service quotes due to missing immediate credibility indicators.",
+        "recommendedSolution": "Integrate dynamic, verified review stream widget and testimonial highlights on high-intent landing pages.",
+        "relevantWatechService": "conversion_optimization",
+        "category": "reputation_management",
+        "priorityBand": "immediate_opportunity",
+        "scoreBreakdown": {
+          "businessImpact": 18,
+          "evidenceStrength": 25,
+          "serviceRelevance": 17,
+          "implementationFeasibility": 14,
+          "businessReadinessSignals": 8,
+          "totalScore": 82,
+          "scoreExplanation": "Verified 4.9★ rating across 85 public reviews not highlighted on website."
+        },
+        "smallestUsefulFirstStep": "Embed top 3 verified Google reviews with reviewer names directly below the quote form.",
+        "implementationComplexity": "low",
+        "effort": "low",
+        "impact": "medium",
+        "confidence": 0.9,
+        "suggestedOutreachAngle": "Congratulate them on their strong reputation and share a preview of how highlighting it can lift quote conversions.",
+        "status": "identified",
+        "createdAt": "2026-11-08T21:51:34.309Z"
+      },
+      {
+        "id": "opp-rep-biz-canton-real-7-5",
+        "businessId": "biz-canton-real-7",
+        "projectId": "proj-canton-hvac-real",
+        "identifiedProblem": "Strong 4.5+ star customer ratings are buried on third-party sites and not showcased on service quote pages.",
+        "evidence": "Verified 4.8★ rating across 70 public reviews.",
+        "businessRelevance": "Social proof placed directly next to quote submission buttons dramatically reduces prospect hesitation.",
+        "businessConsequence": "Prospects hesitate on high-ticket service quotes due to missing immediate credibility indicators.",
+        "recommendedSolution": "Integrate dynamic, verified review stream widget and testimonial highlights on high-intent landing pages.",
+        "relevantWatechService": "conversion_optimization",
+        "category": "reputation_management",
+        "priorityBand": "immediate_opportunity",
+        "scoreBreakdown": {
+          "businessImpact": 18,
+          "evidenceStrength": 25,
+          "serviceRelevance": 17,
+          "implementationFeasibility": 14,
+          "businessReadinessSignals": 8,
+          "totalScore": 82,
+          "scoreExplanation": "Verified 4.8★ rating across 70 public reviews not highlighted on website."
+        },
+        "smallestUsefulFirstStep": "Embed top 3 verified Google reviews with reviewer names directly below the quote form.",
+        "implementationComplexity": "low",
+        "effort": "low",
+        "impact": "medium",
+        "confidence": 0.9,
+        "suggestedOutreachAngle": "Congratulate them on their strong reputation and share a preview of how highlighting it can lift quote conversions.",
+        "status": "identified",
+        "createdAt": "2026-11-08T21:51:34.309Z"
+      },
+      {
+        "id": "opp-rep-biz-canton-real-8-5",
+        "businessId": "biz-canton-real-8",
+        "projectId": "proj-canton-hvac-real",
+        "identifiedProblem": "Strong 4.5+ star customer ratings are buried on third-party sites and not showcased on service quote pages.",
+        "evidence": "Verified 4.9★ rating across 450 public reviews.",
+        "businessRelevance": "Social proof placed directly next to quote submission buttons dramatically reduces prospect hesitation.",
+        "businessConsequence": "Prospects hesitate on high-ticket service quotes due to missing immediate credibility indicators.",
+        "recommendedSolution": "Integrate dynamic, verified review stream widget and testimonial highlights on high-intent landing pages.",
+        "relevantWatechService": "conversion_optimization",
+        "category": "reputation_management",
+        "priorityBand": "immediate_opportunity",
+        "scoreBreakdown": {
+          "businessImpact": 18,
+          "evidenceStrength": 25,
+          "serviceRelevance": 17,
+          "implementationFeasibility": 14,
+          "businessReadinessSignals": 8,
+          "totalScore": 82,
+          "scoreExplanation": "Verified 4.9★ rating across 450 public reviews not highlighted on website."
+        },
+        "smallestUsefulFirstStep": "Embed top 3 verified Google reviews with reviewer names directly below the quote form.",
+        "implementationComplexity": "low",
+        "effort": "low",
+        "impact": "medium",
+        "confidence": 0.9,
+        "suggestedOutreachAngle": "Congratulate them on their strong reputation and share a preview of how highlighting it can lift quote conversions.",
+        "status": "identified",
+        "createdAt": "2026-11-08T21:51:34.309Z"
+      },
+      {
+        "id": "opp-rep-biz-canton-real-9-5",
+        "businessId": "biz-canton-real-9",
+        "projectId": "proj-canton-hvac-real",
+        "identifiedProblem": "Strong 4.5+ star customer ratings are buried on third-party sites and not showcased on service quote pages.",
+        "evidence": "Verified 4.6★ rating across 40 public reviews.",
+        "businessRelevance": "Social proof placed directly next to quote submission buttons dramatically reduces prospect hesitation.",
+        "businessConsequence": "Prospects hesitate on high-ticket service quotes due to missing immediate credibility indicators.",
+        "recommendedSolution": "Integrate dynamic, verified review stream widget and testimonial highlights on high-intent landing pages.",
+        "relevantWatechService": "conversion_optimization",
+        "category": "reputation_management",
+        "priorityBand": "immediate_opportunity",
+        "scoreBreakdown": {
+          "businessImpact": 18,
+          "evidenceStrength": 25,
+          "serviceRelevance": 17,
+          "implementationFeasibility": 14,
+          "businessReadinessSignals": 8,
+          "totalScore": 82,
+          "scoreExplanation": "Verified 4.6★ rating across 40 public reviews not highlighted on website."
+        },
+        "smallestUsefulFirstStep": "Embed top 3 verified Google reviews with reviewer names directly below the quote form.",
+        "implementationComplexity": "low",
+        "effort": "low",
+        "impact": "medium",
+        "confidence": 0.9,
+        "suggestedOutreachAngle": "Congratulate them on their strong reputation and share a preview of how highlighting it can lift quote conversions.",
+        "status": "identified",
+        "createdAt": "2026-11-08T21:51:34.309Z"
+      },
+      {
+        "id": "opp-rep-biz-canton-real-10-5",
+        "businessId": "biz-canton-real-10",
+        "projectId": "proj-canton-hvac-real",
+        "identifiedProblem": "Strong 4.5+ star customer ratings are buried on third-party sites and not showcased on service quote pages.",
+        "evidence": "Verified 4.7★ rating across 50 public reviews.",
+        "businessRelevance": "Social proof placed directly next to quote submission buttons dramatically reduces prospect hesitation.",
+        "businessConsequence": "Prospects hesitate on high-ticket service quotes due to missing immediate credibility indicators.",
+        "recommendedSolution": "Integrate dynamic, verified review stream widget and testimonial highlights on high-intent landing pages.",
+        "relevantWatechService": "conversion_optimization",
+        "category": "reputation_management",
+        "priorityBand": "immediate_opportunity",
+        "scoreBreakdown": {
+          "businessImpact": 18,
+          "evidenceStrength": 25,
+          "serviceRelevance": 17,
+          "implementationFeasibility": 14,
+          "businessReadinessSignals": 8,
+          "totalScore": 82,
+          "scoreExplanation": "Verified 4.7★ rating across 50 public reviews not highlighted on website."
+        },
+        "smallestUsefulFirstStep": "Embed top 3 verified Google reviews with reviewer names directly below the quote form.",
+        "implementationComplexity": "low",
+        "effort": "low",
+        "impact": "medium",
+        "confidence": 0.9,
+        "suggestedOutreachAngle": "Congratulate them on their strong reputation and share a preview of how highlighting it can lift quote conversions.",
+        "status": "identified",
+        "createdAt": "2026-11-08T21:51:34.309Z"
+      }
+    ],
+    "leadScores": [
+      {
+        "id": "score-biz-canton-real-1",
+        "businessId": "biz-canton-real-1",
+        "projectId": "proj-canton-hvac-real",
+        "totalScore": 37,
+        "band": "Hold",
+        "breakdown": {
+          "websiteIssues": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "seoWeaknesses": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "leadCaptureWeaknesses": {
+            "name": "Lead Capture & Conversion Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 15,
+            "evidence": "Conversion score: N/A/100, Lead Capture score: N/A/100.",
+            "isUnknown": false,
+            "notes": "Conversion signals checked."
+          },
+          "socialContentWeaknesses": {
+            "name": "Social & Content Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "No public social channels detected on official domain or listings.",
+            "isUnknown": false,
+            "notes": "Strong opportunity for social presence & content creation."
+          },
+          "reputationOpportunities": {
+            "name": "Reputation Presentation Opportunities",
+            "pointsAwarded": 4,
+            "maxPoints": 10,
+            "evidence": "Rating: 4.9★ (180 reviews). Focus on showcasing verified proof.",
+            "isUnknown": false
+          },
+          "automationOpportunities": {
+            "name": "Automation & Follow-Up Readiness",
+            "pointsAwarded": 5,
+            "maxPoints": 10,
+            "evidence": "Follow-up tech score: 50/100.",
+            "isUnknown": false,
+            "notes": "Automated CRM / booking signals checked."
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "decisionMakerRoute": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Elsass Heating & Cooling, Inc. Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Elsass Heating & Cooling, Inc. Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "prompt08Breakdown": {
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Elsass Heating & Cooling, Inc. Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "positiveEvidence": [
+          "Documented technical and local SEO opportunities identified."
+        ],
+        "negativeEvidence": [
+          "Conversion leaks and mobile viewport friction."
+        ],
+        "unknownInformation": [
+          "Marketing budget and revenue unverified without penalty."
+        ],
+        "priorityReasons": [
+          "Tier Hold prioritization based on confirmed evidence."
+        ],
+        "recommendedNextStep": "Review complete dossier and prepare outreach.",
+        "researchCompleteness": 70,
+        "customWeightsApplied": {
+          "websiteIssues": 20,
+          "seoWeaknesses": 15,
+          "leadCaptureWeaknesses": 15,
+          "socialContentWeaknesses": 10,
+          "reputationOpportunities": 10,
+          "automationOpportunities": 10,
+          "capacityGrowthSignals": 10,
+          "decisionMakerRoute": 10
+        },
+        "calculatedAt": "2026-11-08T21:51:34.309Z",
+        "rationale": "Prioritization Grade Hold (37/100) based on transparent criteria. Missing evidence was preserved as Unknown without penalty."
+      },
+      {
+        "id": "score-biz-canton-real-2",
+        "businessId": "biz-canton-real-2",
+        "projectId": "proj-canton-hvac-real",
+        "totalScore": 37,
+        "band": "Hold",
+        "breakdown": {
+          "websiteIssues": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "seoWeaknesses": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "leadCaptureWeaknesses": {
+            "name": "Lead Capture & Conversion Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 15,
+            "evidence": "Conversion score: N/A/100, Lead Capture score: N/A/100.",
+            "isUnknown": false,
+            "notes": "Conversion signals checked."
+          },
+          "socialContentWeaknesses": {
+            "name": "Social & Content Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "No public social channels detected on official domain or listings.",
+            "isUnknown": false,
+            "notes": "Strong opportunity for social presence & content creation."
+          },
+          "reputationOpportunities": {
+            "name": "Reputation Presentation Opportunities",
+            "pointsAwarded": 4,
+            "maxPoints": 10,
+            "evidence": "Rating: 4.8★ (340 reviews). Focus on showcasing verified proof.",
+            "isUnknown": false
+          },
+          "automationOpportunities": {
+            "name": "Automation & Follow-Up Readiness",
+            "pointsAwarded": 5,
+            "maxPoints": 10,
+            "evidence": "Follow-up tech score: 50/100.",
+            "isUnknown": false,
+            "notes": "Automated CRM / booking signals checked."
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "decisionMakerRoute": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Quality Heating & Cooling Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Quality Heating & Cooling Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "prompt08Breakdown": {
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Quality Heating & Cooling Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "positiveEvidence": [
+          "Documented technical and local SEO opportunities identified."
+        ],
+        "negativeEvidence": [
+          "Conversion leaks and mobile viewport friction."
+        ],
+        "unknownInformation": [
+          "Marketing budget and revenue unverified without penalty."
+        ],
+        "priorityReasons": [
+          "Tier Hold prioritization based on confirmed evidence."
+        ],
+        "recommendedNextStep": "Review complete dossier and prepare outreach.",
+        "researchCompleteness": 70,
+        "customWeightsApplied": {
+          "websiteIssues": 20,
+          "seoWeaknesses": 15,
+          "leadCaptureWeaknesses": 15,
+          "socialContentWeaknesses": 10,
+          "reputationOpportunities": 10,
+          "automationOpportunities": 10,
+          "capacityGrowthSignals": 10,
+          "decisionMakerRoute": 10
+        },
+        "calculatedAt": "2026-11-08T21:51:34.309Z",
+        "rationale": "Prioritization Grade Hold (37/100) based on transparent criteria. Missing evidence was preserved as Unknown without penalty."
+      },
+      {
+        "id": "score-biz-canton-real-3",
+        "businessId": "biz-canton-real-3",
+        "projectId": "proj-canton-hvac-real",
+        "totalScore": 37,
+        "band": "Hold",
+        "breakdown": {
+          "websiteIssues": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "seoWeaknesses": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "leadCaptureWeaknesses": {
+            "name": "Lead Capture & Conversion Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 15,
+            "evidence": "Conversion score: N/A/100, Lead Capture score: N/A/100.",
+            "isUnknown": false,
+            "notes": "Conversion signals checked."
+          },
+          "socialContentWeaknesses": {
+            "name": "Social & Content Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "No public social channels detected on official domain or listings.",
+            "isUnknown": false,
+            "notes": "Strong opportunity for social presence & content creation."
+          },
+          "reputationOpportunities": {
+            "name": "Reputation Presentation Opportunities",
+            "pointsAwarded": 4,
+            "maxPoints": 10,
+            "evidence": "Rating: 4.7★ (95 reviews). Focus on showcasing verified proof.",
+            "isUnknown": false
+          },
+          "automationOpportunities": {
+            "name": "Automation & Follow-Up Readiness",
+            "pointsAwarded": 5,
+            "maxPoints": 10,
+            "evidence": "Follow-up tech score: 50/100.",
+            "isUnknown": false,
+            "notes": "Automated CRM / booking signals checked."
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "decisionMakerRoute": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Zoned Comfort Heating & Cooling, Inc. Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Zoned Comfort Heating & Cooling, Inc. Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "prompt08Breakdown": {
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Zoned Comfort Heating & Cooling, Inc. Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "positiveEvidence": [
+          "Documented technical and local SEO opportunities identified."
+        ],
+        "negativeEvidence": [
+          "Conversion leaks and mobile viewport friction."
+        ],
+        "unknownInformation": [
+          "Marketing budget and revenue unverified without penalty."
+        ],
+        "priorityReasons": [
+          "Tier Hold prioritization based on confirmed evidence."
+        ],
+        "recommendedNextStep": "Review complete dossier and prepare outreach.",
+        "researchCompleteness": 70,
+        "customWeightsApplied": {
+          "websiteIssues": 20,
+          "seoWeaknesses": 15,
+          "leadCaptureWeaknesses": 15,
+          "socialContentWeaknesses": 10,
+          "reputationOpportunities": 10,
+          "automationOpportunities": 10,
+          "capacityGrowthSignals": 10,
+          "decisionMakerRoute": 10
+        },
+        "calculatedAt": "2026-11-08T21:51:34.309Z",
+        "rationale": "Prioritization Grade Hold (37/100) based on transparent criteria. Missing evidence was preserved as Unknown without penalty."
+      },
+      {
+        "id": "score-biz-canton-real-4",
+        "businessId": "biz-canton-real-4",
+        "projectId": "proj-canton-hvac-real",
+        "totalScore": 37,
+        "band": "Hold",
+        "breakdown": {
+          "websiteIssues": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "seoWeaknesses": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "leadCaptureWeaknesses": {
+            "name": "Lead Capture & Conversion Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 15,
+            "evidence": "Conversion score: N/A/100, Lead Capture score: N/A/100.",
+            "isUnknown": false,
+            "notes": "Conversion signals checked."
+          },
+          "socialContentWeaknesses": {
+            "name": "Social & Content Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "No public social channels detected on official domain or listings.",
+            "isUnknown": false,
+            "notes": "Strong opportunity for social presence & content creation."
+          },
+          "reputationOpportunities": {
+            "name": "Reputation Presentation Opportunities",
+            "pointsAwarded": 4,
+            "maxPoints": 10,
+            "evidence": "Rating: 4.9★ (120 reviews). Focus on showcasing verified proof.",
+            "isUnknown": false
+          },
+          "automationOpportunities": {
+            "name": "Automation & Follow-Up Readiness",
+            "pointsAwarded": 5,
+            "maxPoints": 10,
+            "evidence": "Follow-up tech score: 50/100.",
+            "isUnknown": false,
+            "notes": "Automated CRM / booking signals checked."
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "decisionMakerRoute": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: CKP Heating & Cooling, LLC Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: CKP Heating & Cooling, LLC Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "prompt08Breakdown": {
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: CKP Heating & Cooling, LLC Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "positiveEvidence": [
+          "Documented technical and local SEO opportunities identified."
+        ],
+        "negativeEvidence": [
+          "Conversion leaks and mobile viewport friction."
+        ],
+        "unknownInformation": [
+          "Marketing budget and revenue unverified without penalty."
+        ],
+        "priorityReasons": [
+          "Tier Hold prioritization based on confirmed evidence."
+        ],
+        "recommendedNextStep": "Review complete dossier and prepare outreach.",
+        "researchCompleteness": 70,
+        "customWeightsApplied": {
+          "websiteIssues": 20,
+          "seoWeaknesses": 15,
+          "leadCaptureWeaknesses": 15,
+          "socialContentWeaknesses": 10,
+          "reputationOpportunities": 10,
+          "automationOpportunities": 10,
+          "capacityGrowthSignals": 10,
+          "decisionMakerRoute": 10
+        },
+        "calculatedAt": "2026-11-08T21:51:34.309Z",
+        "rationale": "Prioritization Grade Hold (37/100) based on transparent criteria. Missing evidence was preserved as Unknown without penalty."
+      },
+      {
+        "id": "score-biz-canton-real-5",
+        "businessId": "biz-canton-real-5",
+        "projectId": "proj-canton-hvac-real",
+        "totalScore": 18,
+        "band": "Hold",
+        "breakdown": {
+          "websiteIssues": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 0,
+            "maxPoints": 20,
+            "evidence": "No website audit has been conducted yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized. Score pending live audit."
+          },
+          "seoWeaknesses": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 0,
+            "maxPoints": 15,
+            "evidence": "No SEO inspection recorded.",
+            "isUnknown": true
+          },
+          "leadCaptureWeaknesses": {
+            "name": "Lead Capture & Conversion Weaknesses",
+            "pointsAwarded": 0,
+            "maxPoints": 15,
+            "evidence": "No conversion audit recorded.",
+            "isUnknown": true
+          },
+          "socialContentWeaknesses": {
+            "name": "Social & Content Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "No public social channels detected on official domain or listings.",
+            "isUnknown": false,
+            "notes": "Strong opportunity for social presence & content creation."
+          },
+          "reputationOpportunities": {
+            "name": "Reputation Presentation Opportunities",
+            "pointsAwarded": 4,
+            "maxPoints": 10,
+            "evidence": "Rating: 4.5★ (60 reviews). Focus on showcasing verified proof.",
+            "isUnknown": false
+          },
+          "automationOpportunities": {
+            "name": "Automation & Follow-Up Readiness",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No follow-up readiness audit.",
+            "isUnknown": true
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "decisionMakerRoute": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Miracle Plumbing, Heating & Cooling Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 5,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 0,
+            "maxPoints": 20,
+            "evidence": "No website audit has been conducted yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized. Score pending live audit."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 0,
+            "maxPoints": 15,
+            "evidence": "No SEO inspection recorded.",
+            "isUnknown": true
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Miracle Plumbing, Heating & Cooling Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "prompt08Breakdown": {
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 5,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 0,
+            "maxPoints": 20,
+            "evidence": "No website audit has been conducted yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized. Score pending live audit."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 0,
+            "maxPoints": 15,
+            "evidence": "No SEO inspection recorded.",
+            "isUnknown": true
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Miracle Plumbing, Heating & Cooling Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "positiveEvidence": [
+          "Documented technical and local SEO opportunities identified."
+        ],
+        "negativeEvidence": [
+          "Conversion leaks and mobile viewport friction."
+        ],
+        "unknownInformation": [
+          "Marketing budget and revenue unverified without penalty."
+        ],
+        "priorityReasons": [
+          "Tier Hold prioritization based on confirmed evidence."
+        ],
+        "recommendedNextStep": "Review complete dossier and prepare outreach.",
+        "researchCompleteness": 40,
+        "customWeightsApplied": {
+          "websiteIssues": 20,
+          "seoWeaknesses": 15,
+          "leadCaptureWeaknesses": 15,
+          "socialContentWeaknesses": 10,
+          "reputationOpportunities": 10,
+          "automationOpportunities": 10,
+          "capacityGrowthSignals": 10,
+          "decisionMakerRoute": 10
+        },
+        "calculatedAt": "2026-11-08T21:51:34.309Z",
+        "rationale": "Prioritization Grade Hold (18/100) based on transparent criteria. Missing evidence was preserved as Unknown without penalty."
+      },
+      {
+        "id": "score-biz-canton-real-6",
+        "businessId": "biz-canton-real-6",
+        "projectId": "proj-canton-hvac-real",
+        "totalScore": 39,
+        "band": "Hold",
+        "breakdown": {
+          "websiteIssues": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 5,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 77/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "seoWeaknesses": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "leadCaptureWeaknesses": {
+            "name": "Lead Capture & Conversion Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 15,
+            "evidence": "Conversion score: N/A/100, Lead Capture score: N/A/100.",
+            "isUnknown": false,
+            "notes": "Conversion signals checked."
+          },
+          "socialContentWeaknesses": {
+            "name": "Social & Content Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "No public social channels detected on official domain or listings.",
+            "isUnknown": false,
+            "notes": "Strong opportunity for social presence & content creation."
+          },
+          "reputationOpportunities": {
+            "name": "Reputation Presentation Opportunities",
+            "pointsAwarded": 4,
+            "maxPoints": 10,
+            "evidence": "Rating: 4.9★ (85 reviews). Focus on showcasing verified proof.",
+            "isUnknown": false
+          },
+          "automationOpportunities": {
+            "name": "Automation & Follow-Up Readiness",
+            "pointsAwarded": 5,
+            "maxPoints": 10,
+            "evidence": "Follow-up tech score: 50/100.",
+            "isUnknown": false,
+            "notes": "Automated CRM / booking signals checked."
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "decisionMakerRoute": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Beyond Best Services Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 10,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 5,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 77/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Beyond Best Services Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "prompt08Breakdown": {
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 10,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 5,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 77/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Beyond Best Services Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "positiveEvidence": [
+          "Documented technical and local SEO opportunities identified."
+        ],
+        "negativeEvidence": [
+          "Conversion leaks and mobile viewport friction."
+        ],
+        "unknownInformation": [
+          "Marketing budget and revenue unverified without penalty."
+        ],
+        "priorityReasons": [
+          "Tier Hold prioritization based on confirmed evidence."
+        ],
+        "recommendedNextStep": "Review complete dossier and prepare outreach.",
+        "researchCompleteness": 70,
+        "customWeightsApplied": {
+          "websiteIssues": 20,
+          "seoWeaknesses": 15,
+          "leadCaptureWeaknesses": 15,
+          "socialContentWeaknesses": 10,
+          "reputationOpportunities": 10,
+          "automationOpportunities": 10,
+          "capacityGrowthSignals": 10,
+          "decisionMakerRoute": 10
+        },
+        "calculatedAt": "2026-11-08T21:51:34.309Z",
+        "rationale": "Prioritization Grade Hold (39/100) based on transparent criteria. Missing evidence was preserved as Unknown without penalty."
+      },
+      {
+        "id": "score-biz-canton-real-7",
+        "businessId": "biz-canton-real-7",
+        "projectId": "proj-canton-hvac-real",
+        "totalScore": 37,
+        "band": "Hold",
+        "breakdown": {
+          "websiteIssues": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "seoWeaknesses": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "leadCaptureWeaknesses": {
+            "name": "Lead Capture & Conversion Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 15,
+            "evidence": "Conversion score: N/A/100, Lead Capture score: N/A/100.",
+            "isUnknown": false,
+            "notes": "Conversion signals checked."
+          },
+          "socialContentWeaknesses": {
+            "name": "Social & Content Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "No public social channels detected on official domain or listings.",
+            "isUnknown": false,
+            "notes": "Strong opportunity for social presence & content creation."
+          },
+          "reputationOpportunities": {
+            "name": "Reputation Presentation Opportunities",
+            "pointsAwarded": 4,
+            "maxPoints": 10,
+            "evidence": "Rating: 4.8★ (70 reviews). Focus on showcasing verified proof.",
+            "isUnknown": false
+          },
+          "automationOpportunities": {
+            "name": "Automation & Follow-Up Readiness",
+            "pointsAwarded": 5,
+            "maxPoints": 10,
+            "evidence": "Follow-up tech score: 50/100.",
+            "isUnknown": false,
+            "notes": "Automated CRM / booking signals checked."
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "decisionMakerRoute": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Foster's Heating & Air Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Foster's Heating & Air Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "prompt08Breakdown": {
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Foster's Heating & Air Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "positiveEvidence": [
+          "Documented technical and local SEO opportunities identified."
+        ],
+        "negativeEvidence": [
+          "Conversion leaks and mobile viewport friction."
+        ],
+        "unknownInformation": [
+          "Marketing budget and revenue unverified without penalty."
+        ],
+        "priorityReasons": [
+          "Tier Hold prioritization based on confirmed evidence."
+        ],
+        "recommendedNextStep": "Review complete dossier and prepare outreach.",
+        "researchCompleteness": 70,
+        "customWeightsApplied": {
+          "websiteIssues": 20,
+          "seoWeaknesses": 15,
+          "leadCaptureWeaknesses": 15,
+          "socialContentWeaknesses": 10,
+          "reputationOpportunities": 10,
+          "automationOpportunities": 10,
+          "capacityGrowthSignals": 10,
+          "decisionMakerRoute": 10
+        },
+        "calculatedAt": "2026-11-08T21:51:34.309Z",
+        "rationale": "Prioritization Grade Hold (37/100) based on transparent criteria. Missing evidence was preserved as Unknown without penalty."
+      },
+      {
+        "id": "score-biz-canton-real-8",
+        "businessId": "biz-canton-real-8",
+        "projectId": "proj-canton-hvac-real",
+        "totalScore": 38,
+        "band": "Hold",
+        "breakdown": {
+          "websiteIssues": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 4,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 81/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "seoWeaknesses": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "leadCaptureWeaknesses": {
+            "name": "Lead Capture & Conversion Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 15,
+            "evidence": "Conversion score: N/A/100, Lead Capture score: N/A/100.",
+            "isUnknown": false,
+            "notes": "Conversion signals checked."
+          },
+          "socialContentWeaknesses": {
+            "name": "Social & Content Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "No public social channels detected on official domain or listings.",
+            "isUnknown": false,
+            "notes": "Strong opportunity for social presence & content creation."
+          },
+          "reputationOpportunities": {
+            "name": "Reputation Presentation Opportunities",
+            "pointsAwarded": 4,
+            "maxPoints": 10,
+            "evidence": "Rating: 4.9★ (450 reviews). Focus on showcasing verified proof.",
+            "isUnknown": false
+          },
+          "automationOpportunities": {
+            "name": "Automation & Follow-Up Readiness",
+            "pointsAwarded": 5,
+            "maxPoints": 10,
+            "evidence": "Follow-up tech score: 50/100.",
+            "isUnknown": false,
+            "notes": "Automated CRM / booking signals checked."
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "decisionMakerRoute": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Shanklin Heating, Air Conditioning, & Electric Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 10,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 4,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 81/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Shanklin Heating, Air Conditioning, & Electric Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "prompt08Breakdown": {
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 10,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 4,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 81/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Shanklin Heating, Air Conditioning, & Electric Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "positiveEvidence": [
+          "Documented technical and local SEO opportunities identified."
+        ],
+        "negativeEvidence": [
+          "Conversion leaks and mobile viewport friction."
+        ],
+        "unknownInformation": [
+          "Marketing budget and revenue unverified without penalty."
+        ],
+        "priorityReasons": [
+          "Tier Hold prioritization based on confirmed evidence."
+        ],
+        "recommendedNextStep": "Review complete dossier and prepare outreach.",
+        "researchCompleteness": 70,
+        "customWeightsApplied": {
+          "websiteIssues": 20,
+          "seoWeaknesses": 15,
+          "leadCaptureWeaknesses": 15,
+          "socialContentWeaknesses": 10,
+          "reputationOpportunities": 10,
+          "automationOpportunities": 10,
+          "capacityGrowthSignals": 10,
+          "decisionMakerRoute": 10
+        },
+        "calculatedAt": "2026-11-08T21:51:34.309Z",
+        "rationale": "Prioritization Grade Hold (38/100) based on transparent criteria. Missing evidence was preserved as Unknown without penalty."
+      },
+      {
+        "id": "score-biz-canton-real-9",
+        "businessId": "biz-canton-real-9",
+        "projectId": "proj-canton-hvac-real",
+        "totalScore": 37,
+        "band": "Hold",
+        "breakdown": {
+          "websiteIssues": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "seoWeaknesses": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "leadCaptureWeaknesses": {
+            "name": "Lead Capture & Conversion Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 15,
+            "evidence": "Conversion score: N/A/100, Lead Capture score: N/A/100.",
+            "isUnknown": false,
+            "notes": "Conversion signals checked."
+          },
+          "socialContentWeaknesses": {
+            "name": "Social & Content Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "No public social channels detected on official domain or listings.",
+            "isUnknown": false,
+            "notes": "Strong opportunity for social presence & content creation."
+          },
+          "reputationOpportunities": {
+            "name": "Reputation Presentation Opportunities",
+            "pointsAwarded": 4,
+            "maxPoints": 10,
+            "evidence": "Rating: 4.6★ (40 reviews). Focus on showcasing verified proof.",
+            "isUnknown": false
+          },
+          "automationOpportunities": {
+            "name": "Automation & Follow-Up Readiness",
+            "pointsAwarded": 5,
+            "maxPoints": 10,
+            "evidence": "Follow-up tech score: 50/100.",
+            "isUnknown": false,
+            "notes": "Automated CRM / booking signals checked."
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "decisionMakerRoute": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Bryant Heating & Cooling LLC Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Bryant Heating & Cooling LLC Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "prompt08Breakdown": {
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Bryant Heating & Cooling LLC Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "positiveEvidence": [
+          "Documented technical and local SEO opportunities identified."
+        ],
+        "negativeEvidence": [
+          "Conversion leaks and mobile viewport friction."
+        ],
+        "unknownInformation": [
+          "Marketing budget and revenue unverified without penalty."
+        ],
+        "priorityReasons": [
+          "Tier Hold prioritization based on confirmed evidence."
+        ],
+        "recommendedNextStep": "Review complete dossier and prepare outreach.",
+        "researchCompleteness": 70,
+        "customWeightsApplied": {
+          "websiteIssues": 20,
+          "seoWeaknesses": 15,
+          "leadCaptureWeaknesses": 15,
+          "socialContentWeaknesses": 10,
+          "reputationOpportunities": 10,
+          "automationOpportunities": 10,
+          "capacityGrowthSignals": 10,
+          "decisionMakerRoute": 10
+        },
+        "calculatedAt": "2026-11-08T21:51:34.309Z",
+        "rationale": "Prioritization Grade Hold (37/100) based on transparent criteria. Missing evidence was preserved as Unknown without penalty."
+      },
+      {
+        "id": "score-biz-canton-real-10",
+        "businessId": "biz-canton-real-10",
+        "projectId": "proj-canton-hvac-real",
+        "totalScore": 37,
+        "band": "Hold",
+        "breakdown": {
+          "websiteIssues": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "seoWeaknesses": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "leadCaptureWeaknesses": {
+            "name": "Lead Capture & Conversion Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 15,
+            "evidence": "Conversion score: N/A/100, Lead Capture score: N/A/100.",
+            "isUnknown": false,
+            "notes": "Conversion signals checked."
+          },
+          "socialContentWeaknesses": {
+            "name": "Social & Content Weaknesses",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "No public social channels detected on official domain or listings.",
+            "isUnknown": false,
+            "notes": "Strong opportunity for social presence & content creation."
+          },
+          "reputationOpportunities": {
+            "name": "Reputation Presentation Opportunities",
+            "pointsAwarded": 4,
+            "maxPoints": 10,
+            "evidence": "Rating: 4.7★ (50 reviews). Focus on showcasing verified proof.",
+            "isUnknown": false
+          },
+          "automationOpportunities": {
+            "name": "Automation & Follow-Up Readiness",
+            "pointsAwarded": 5,
+            "maxPoints": 10,
+            "evidence": "Follow-up tech score: 50/100.",
+            "isUnknown": false,
+            "notes": "Automated CRM / booking signals checked."
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "decisionMakerRoute": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Canton HVAC Co. Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Canton HVAC Co. Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "prompt08Breakdown": {
+          "opportunityEvidence": {
+            "name": "Business Opportunity Evidence",
+            "pointsAwarded": 9,
+            "maxPoints": 25,
+            "evidence": "Evaluated against multi-source findings",
+            "isUnknown": false
+          },
+          "websitePotential": {
+            "name": "Website Usability & Tech Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 20,
+            "evidence": "Website Health Score: 84/100 with 0 critical/high issues detected.",
+            "isUnknown": false,
+            "notes": "Audit established baseline credibility."
+          },
+          "localSeoPotential": {
+            "name": "SEO & Local Visibility Weaknesses",
+            "pointsAwarded": 3,
+            "maxPoints": 15,
+            "evidence": "Tech SEO score: 80/100, Local SEO score: 85/100.",
+            "isUnknown": false,
+            "notes": "Title: Present, Meta Description: Present"
+          },
+          "capacityGrowthSignals": {
+            "name": "Business Capacity & Growth Signals",
+            "pointsAwarded": 0,
+            "maxPoints": 10,
+            "evidence": "No publicly verified growth signals found yet.",
+            "isUnknown": true,
+            "notes": "Unknown: Not penalized."
+          },
+          "watechServiceFit": {
+            "name": "Service Fit with Watech",
+            "pointsAwarded": 12,
+            "maxPoints": 15,
+            "evidence": "Matches Watech commercial core services",
+            "isUnknown": false
+          },
+          "decisionMakerAvailability": {
+            "name": "Decision-Maker & Contact Route",
+            "pointsAwarded": 6,
+            "maxPoints": 10,
+            "evidence": "Verified contact route: Canton HVAC Co. Office (Office & Dispatch).",
+            "isUnknown": false
+          },
+          "dataReliabilityRecency": {
+            "name": "Data Reliability & Recency",
+            "pointsAwarded": 8,
+            "maxPoints": 10,
+            "evidence": "Verified official public registry",
+            "isUnknown": false
+          }
+        },
+        "positiveEvidence": [
+          "Documented technical and local SEO opportunities identified."
+        ],
+        "negativeEvidence": [
+          "Conversion leaks and mobile viewport friction."
+        ],
+        "unknownInformation": [
+          "Marketing budget and revenue unverified without penalty."
+        ],
+        "priorityReasons": [
+          "Tier Hold prioritization based on confirmed evidence."
+        ],
+        "recommendedNextStep": "Review complete dossier and prepare outreach.",
+        "researchCompleteness": 70,
+        "customWeightsApplied": {
+          "websiteIssues": 20,
+          "seoWeaknesses": 15,
+          "leadCaptureWeaknesses": 15,
+          "socialContentWeaknesses": 10,
+          "reputationOpportunities": 10,
+          "automationOpportunities": 10,
+          "capacityGrowthSignals": 10,
+          "decisionMakerRoute": 10
+        },
+        "calculatedAt": "2026-11-08T21:51:34.309Z",
+        "rationale": "Prioritization Grade Hold (37/100) based on transparent criteria. Missing evidence was preserved as Unknown without penalty."
+      }
+    ],
+    "followUpSchedules": [],
+    "crmActivities": []
+  }
+}

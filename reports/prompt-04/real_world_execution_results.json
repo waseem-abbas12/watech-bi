@@ -1,0 +1,242 @@
+{
+  "testTimestamp": "2026-11-08T21:44:00.290Z",
+  "datasetCount": 10,
+  "run1": {
+    "durationMs": 30256,
+    "summary": {
+      "totalDiscovered": 10,
+      "deduplicated": 0,
+      "audited": 9,
+      "auditFailed": 1,
+      "auditSkipped": 0,
+      "contactsFound": 13,
+      "emailsVerified": 3,
+      "opportunitiesGenerated": 11,
+      "leadsScored": 10,
+      "leadsQualified": 1
+    },
+    "stages": [
+      {
+        "stage": "BUSINESS_DISCOVERY",
+        "status": "skipped",
+        "recordsProcessed": 10,
+        "recordsSucceeded": 10,
+        "recordsFailed": 0,
+        "recordsSkipped": 10,
+        "durationMs": 0,
+        "details": {
+          "reason": "EXISTING_BUSINESS_SELECTED",
+          "count": 10,
+          "mode": "existing_businesses"
+        }
+      },
+      {
+        "stage": "BUSINESS_DEDUPLICATION",
+        "status": "completed",
+        "recordsProcessed": 10,
+        "recordsSucceeded": 10,
+        "recordsFailed": 0,
+        "recordsSkipped": 0,
+        "durationMs": 0,
+        "details": {
+          "deduplicatedCount": 0,
+          "finalCount": 10
+        }
+      },
+      {
+        "stage": "WEBSITE_AUDIT",
+        "status": "partial",
+        "recordsProcessed": 10,
+        "recordsSucceeded": 9,
+        "recordsFailed": 1,
+        "recordsSkipped": 0,
+        "durationMs": 29682
+      },
+      {
+        "stage": "CONTACT_EXTRACTION",
+        "status": "completed",
+        "recordsProcessed": 10,
+        "recordsSucceeded": 13,
+        "recordsFailed": 0,
+        "recordsSkipped": 0,
+        "durationMs": 139
+      },
+      {
+        "stage": "DECISION_MAKER_ANALYSIS",
+        "status": "completed",
+        "recordsProcessed": 13,
+        "recordsSucceeded": 0,
+        "recordsFailed": 0,
+        "recordsSkipped": 0,
+        "durationMs": 1,
+        "details": {
+          "decisionMakersIdentified": 0
+        }
+      },
+      {
+        "stage": "EMAIL_VERIFICATION",
+        "status": "completed",
+        "recordsProcessed": 3,
+        "recordsSucceeded": 3,
+        "recordsFailed": 0,
+        "recordsSkipped": 0,
+        "durationMs": 313
+      },
+      {
+        "stage": "OPPORTUNITY_ANALYSIS",
+        "status": "completed",
+        "recordsProcessed": 10,
+        "recordsSucceeded": 11,
+        "recordsFailed": 0,
+        "recordsSkipped": 0,
+        "durationMs": 0
+      },
+      {
+        "stage": "LEAD_SCORING",
+        "status": "completed",
+        "recordsProcessed": 10,
+        "recordsSucceeded": 10,
+        "recordsFailed": 0,
+        "recordsSkipped": 0,
+        "durationMs": 1,
+        "details": {
+          "qualifiedCount": 1
+        }
+      },
+      {
+        "stage": "CRM_PERSISTENCE",
+        "status": "completed",
+        "recordsProcessed": 10,
+        "recordsSucceeded": 1,
+        "recordsFailed": 0,
+        "recordsSkipped": 9,
+        "durationMs": 0
+      },
+      {
+        "stage": "FOLLOW_UP_SCHEDULING",
+        "status": "completed",
+        "recordsProcessed": 1,
+        "recordsSucceeded": 1,
+        "recordsFailed": 0,
+        "recordsSkipped": 0,
+        "durationMs": 0
+      }
+    ],
+    "businesses": [
+      {
+        "id": "biz-canton-real-1",
+        "name": "Elsass Heating & Cooling, Inc.",
+        "website": "https://elsassheat.com",
+        "status": "audited",
+        "score": 37,
+        "auditScore": 84,
+        "contactsCount": 1,
+        "followUpScheduled": false
+      },
+      {
+        "id": "biz-canton-real-2",
+        "name": "Quality Heating & Cooling",
+        "website": "https://www.qualityheatingandcooling.com",
+        "status": "audited",
+        "score": 37,
+        "auditScore": 84,
+        "contactsCount": 1,
+        "followUpScheduled": false
+      },
+      {
+        "id": "biz-canton-real-3",
+        "name": "Zoned Comfort Heating & Cooling, Inc.",
+        "website": "https://www.zonedcomfort.com",
+        "status": "audited",
+        "score": 37,
+        "auditScore": 84,
+        "contactsCount": 1,
+        "followUpScheduled": false
+      },
+      {
+        "id": "biz-canton-real-4",
+        "name": "CKP Heating & Cooling, LLC",
+        "website": "https://www.ckphvac.com",
+        "status": "qualified",
+        "score": 40,
+        "auditScore": 79,
+        "contactsCount": 1,
+        "followUpScheduled": true
+      },
+      {
+        "id": "biz-canton-real-5",
+        "name": "Miracle Plumbing, Heating & Cooling",
+        "website": "https://www.miracleplumbingandheating.com",
+        "status": "discovered",
+        "score": 18,
+        "contactsCount": 1,
+        "followUpScheduled": false
+      },
+      {
+        "id": "biz-canton-real-6",
+        "name": "Beyond Best Services",
+        "website": "https://www.beyondbestservices.com",
+        "status": "audited",
+        "score": 39,
+        "auditScore": 77,
+        "contactsCount": 2,
+        "followUpScheduled": false
+      },
+      {
+        "id": "biz-canton-real-7",
+        "name": "Foster's Heating & Air",
+        "website": "https://fostersheatingair.com",
+        "status": "audited",
+        "score": 37,
+        "auditScore": 84,
+        "contactsCount": 2,
+        "followUpScheduled": false
+      },
+      {
+        "id": "biz-canton-real-8",
+        "name": "Shanklin Heating, Air Conditioning, & Electric",
+        "website": "https://www.shanklinheatingandcooling.com",
+        "status": "audited",
+        "score": 39,
+        "auditScore": 77,
+        "contactsCount": 2,
+        "followUpScheduled": false
+      },
+      {
+        "id": "biz-canton-real-9",
+        "name": "Bryant Heating & Cooling LLC",
+        "website": "https://bryantheatingllc.com",
+        "status": "audited",
+        "score": 37,
+        "auditScore": 84,
+        "contactsCount": 1,
+        "followUpScheduled": false
+      },
+      {
+        "id": "biz-canton-real-10",
+        "name": "Canton HVAC Co.",
+        "website": "https://cantonhvacco.com",
+        "status": "audited",
+        "score": 37,
+        "auditScore": 84,
+        "contactsCount": 1,
+        "followUpScheduled": false
+      }
+    ]
+  },
+  "run2": {
+    "summary": {
+      "totalDiscovered": 10,
+      "deduplicated": 0,
+      "audited": 9,
+      "auditFailed": 1,
+      "auditSkipped": 0,
+      "contactsFound": 13,
+      "emailsVerified": 3,
+      "opportunitiesGenerated": 10,
+      "leadsScored": 10,
+      "leadsQualified": 0
+    },
+    "idempotenceVerified": true
+  }
+}

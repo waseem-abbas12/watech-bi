@@ -1,0 +1,119 @@
+{
+  "suite": "Prompt 10: Integrations, Background Jobs & Automation Engine",
+  "timestamp": "2026-11-09T16:20:00.400Z",
+  "totalTests": 18,
+  "passed": 18,
+  "failed": 0,
+  "passRate": "100%",
+  "verdict": "PASSED",
+  "tests": [
+    {
+      "test": "1. Cross-Tenant Integration Access Isolation",
+      "passed": true,
+      "details": "Tenant B cannot view, query, or decrypt Tenant A integrations",
+      "timestamp": "2026-11-09T16:19:54.056Z"
+    },
+    {
+      "test": "2. Credential Encryption at Rest (AES-256-GCM)",
+      "passed": true,
+      "details": "Encrypted: enc:v1:9e383a284fa8ad38c... | Masked: SG.l••••••••z987",
+      "timestamp": "2026-11-09T16:19:54.150Z"
+    },
+    {
+      "test": "3. Unauthorized Email Sending Rejection",
+      "passed": true,
+      "details": "Endpoint returned HTTP 401 (expected 401 Unauthorized)",
+      "timestamp": "2026-11-09T16:19:54.225Z"
+    },
+    {
+      "test": "4. Provider Authentication Failures Handled Gracefully",
+      "passed": true,
+      "details": "Provider test caught error: \"Invalid Resend API Key format. Must begin with \"re_\".\"",
+      "timestamp": "2026-11-09T16:19:54.322Z"
+    },
+    {
+      "test": "5. Rate Limits Protection",
+      "passed": true,
+      "details": "Rate limiter throttled requests exceeding maximum burst",
+      "timestamp": "2026-11-09T16:19:54.331Z"
+    },
+    {
+      "test": "6. Duplicate Job Execution Prevention",
+      "passed": true,
+      "details": "Second enqueue matched existing job job_1794241194332_jxdzh",
+      "timestamp": "2026-11-09T16:19:54.334Z"
+    },
+    {
+      "test": "7. Worker Crash & Stale Job Recovery",
+      "passed": true,
+      "details": "Recovered 1 stale crashed jobs; status reset to RETRYING",
+      "timestamp": "2026-11-09T16:19:54.341Z"
+    },
+    {
+      "test": "8. Job Retry with Exponential Backoff",
+      "passed": true,
+      "details": "Job entered RETRYING with next scheduled run: 2026-11-09T16:19:56.348Z",
+      "timestamp": "2026-11-09T16:19:54.353Z"
+    },
+    {
+      "test": "9. Dead-Letter Queue Handling",
+      "passed": true,
+      "details": "Job moved to dead-letter queue: Max retry limit (1) reached. Last error: Temporary DNS timeout connecting to MX mail exchanger",
+      "timestamp": "2026-11-09T16:19:54.368Z"
+    },
+    {
+      "test": "10. Automation Permission Checks",
+      "passed": true,
+      "details": "Automations endpoint strictly enforces authentication",
+      "timestamp": "2026-11-09T16:19:54.379Z"
+    },
+    {
+      "test": "11. Duplicate Trigger Event Prevention",
+      "passed": true,
+      "details": "Identical event fired within debounce window was marked ignored",
+      "timestamp": "2026-11-09T16:19:54.381Z"
+    },
+    {
+      "test": "12. Follow-Up Opt-Out Enforcement",
+      "passed": true,
+      "details": "Dispatch blocked: Dispatch blocked: Unsubscribed by recipient",
+      "timestamp": "2026-11-09T16:19:54.384Z"
+    },
+    {
+      "test": "13. Webhook HMAC-SHA256 Signature Validation",
+      "passed": true,
+      "details": "Valid HMAC accepted, forged HMAC rejected",
+      "timestamp": "2026-11-09T16:19:54.385Z"
+    },
+    {
+      "test": "14. Webhook Replay Attack Protection",
+      "passed": true,
+      "details": "Rejected expired webhook: Timestamp skew exceeded: request is 600s old (max allowed: 300s)",
+      "timestamp": "2026-11-09T16:19:54.385Z"
+    },
+    {
+      "test": "15. Outbound Webhook SSRF Protections",
+      "passed": true,
+      "details": "Blocked loopback (127.0.0.1), AWS/GCP metadata (169.254.169.254), and RFC1918 private ranges",
+      "timestamp": "2026-11-09T16:19:54.385Z"
+    },
+    {
+      "test": "16. Notification Tenant Isolation",
+      "passed": true,
+      "details": "Tenant B notification feed contains zero notifications from Tenant A",
+      "timestamp": "2026-11-09T16:19:54.391Z"
+    },
+    {
+      "test": "17. Usage Quota & Condition Rule Enforcement",
+      "passed": true,
+      "details": "Condition evaluation correctly evaluated operand thresholds",
+      "timestamp": "2026-11-09T16:19:54.391Z"
+    },
+    {
+      "test": "18. Provider Timeout & Graceful Recovery",
+      "passed": true,
+      "details": "Worker handled timeout gracefully without hanging: \"Destination timed out after 6000ms\"",
+      "timestamp": "2026-11-09T16:20:00.400Z"
+    }
+  ]
+}

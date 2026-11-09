@@ -1,0 +1,57 @@
+{
+  "executedAt": "2026-11-09T13:13:57.123Z",
+  "verdict": "PASS",
+  "suitesCount": 6,
+  "passedCount": 6,
+  "failedCount": 0,
+  "suites": [
+    {
+      "name": "Suite 1: SSRF & Security Hardening",
+      "file": "test_security_ssrf.mjs",
+      "description": "Validates blocking of loopback, private RFC1918, CGNAT, link-local, cloud metadata (169.254.169.254), restricted ports (22, 25, 5432, 6379, 3000), internal hostnames, and redirect bounds.",
+      "status": "PASSED",
+      "durationMs": 3209,
+      "error": null
+    },
+    {
+      "name": "Suite 2: Concurrency & In-Flight Locking",
+      "file": "test_concurrency_locking.mjs",
+      "description": "Verifies mutex lock preventing duplicate in-flight pipeline runs on the same project/batch (returns HTTP 409) and releases lock cleanly on completion.",
+      "status": "PASSED",
+      "durationMs": 5153,
+      "error": null
+    },
+    {
+      "name": "Suite 3: Database Transactions & Integrity",
+      "file": "test_database_integrity.mjs",
+      "description": "Verifies Dexie atomic read-write batch transaction across 9 tables, idempotent re-writes, cascading delete with zero orphan records, and multi-tenant project isolation.",
+      "status": "PASSED",
+      "durationMs": 7624,
+      "error": null
+    },
+    {
+      "name": "Suite 4: Data Quality & Scoring Reliability",
+      "file": "test_data_quality_scoring.mjs",
+      "description": "Verifies deterministic scoring on 4 edge-case profiles, role-based decision maker taxonomy, and non-manipulation of lead scores.",
+      "status": "PASSED",
+      "durationMs": 4069,
+      "error": null
+    },
+    {
+      "name": "Suite 5: Partial Failure Isolation",
+      "file": "test_failure_injection.mjs",
+      "description": "Injects DNS failures, SSRF blocked URLs, and missing websites to verify partial isolation, continued pipeline execution, and robust stage degradation.",
+      "status": "PASSED",
+      "durationMs": 5442,
+      "error": null
+    },
+    {
+      "name": "Suite 6: Scalability & Bounded Concurrency",
+      "file": "benchmark_scalability.mjs",
+      "description": "Measures latency, heap delta, and error rates across 10, 50, and 100 business batches with worker pool concurrency bounded to 4.",
+      "status": "PASSED",
+      "durationMs": 24695,
+      "error": null
+    }
+  ]
+}

@@ -1,0 +1,41 @@
+{
+  "executedAt": "2026-11-09T16:20:47.667Z",
+  "verdict": "PASS",
+  "suitesCount": 4,
+  "passedCount": 4,
+  "failedCount": 0,
+  "suites": [
+    {
+      "name": "Suite 1: Multi-Tenant Isolation & Cross-Tenant Defense",
+      "file": "test_tenant_isolation.mjs",
+      "description": "Proves Organization A and Organization B isolation. Verifies cross-tenant execution blocking with HTTP 403, parameter tampering rejection, and cryptographic token verification.",
+      "status": "PASSED",
+      "durationMs": 13758,
+      "error": null
+    },
+    {
+      "name": "Suite 2: Authentication, Sessions & RBAC Roles",
+      "file": "test_auth_rbac.mjs",
+      "description": "Validates bcrypt password hashing, JWT signing, session expiration, RBAC permissions across Owner, Admin, Manager, Member, and live registration endpoint.",
+      "status": "PASSED",
+      "durationMs": 3735,
+      "error": null
+    },
+    {
+      "name": "Suite 3: Dexie to Centralized Database Migration",
+      "file": "test_dexie_migration.mjs",
+      "description": "Validates non-destructive migration engine with dry-run preflight, schema validation across all 10 pipeline entities, and rejection of malformed rows.",
+      "status": "PASSED",
+      "durationMs": 6263,
+      "error": null
+    },
+    {
+      "name": "Suite 4: Distributed Multi-Tenant Pipeline Locking",
+      "file": "test_distributed_locking.mjs",
+      "description": "Verifies database-backed distributed locking, multi-tenant lock isolation (same project name across different tenants), and atomic release.",
+      "status": "PASSED",
+      "durationMs": 5776,
+      "error": null
+    }
+  ]
+}

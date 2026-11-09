@@ -1,0 +1,50 @@
+# Dependencies
+node_modules/
+/.pnp
+.pnp.js
+
+# Production build outputs
+.next/
+out/
+build/
+dist/
+
+# Vercel
+.vercel
+
+# Environment variables & secrets (NEVER COMMIT)
+.env
+.env*
+!.env.example.local
+.env.development
+.env.test
+.env.production
+*.pem
+*.key
+*.cert
+
+# Database files & logs
+*.sqlite
+*.sqlite-journal
+*.dump
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+.pnpm-debug.log*
+
+# Runtime data & backups
+.watech/
+edge-audit-temp-profile/
+*.tsbuildinfo
+build_output.txt
+
+# OS and Editor files
+.DS_Store
+Thumbs.db
+*.swp
+*.swo
+.idea/
+.vscode/
+.vercel
+.env*
+!.env.example

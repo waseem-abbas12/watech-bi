@@ -1,0 +1,50 @@
+[
+  {
+    "batchSize": 10,
+    "totalDurationMs": 1208,
+    "avgMsPerBusiness": 120.8,
+    "heapDeltaMb": -1,
+    "status": "partial",
+    "audited": 0,
+    "auditFailed": 9,
+    "auditSkipped": 1,
+    "contactsFound": 10,
+    "opportunitiesGenerated": 10,
+    "leadsScored": 10,
+    "leadsQualified": 0,
+    "retries": 0,
+    "runId": "run-1794230016794-m89sdb1"
+  },
+  {
+    "batchSize": 50,
+    "totalDurationMs": 7726,
+    "avgMsPerBusiness": 154.5,
+    "heapDeltaMb": 0,
+    "status": "partial",
+    "audited": 0,
+    "auditFailed": 45,
+    "auditSkipped": 5,
+    "contactsFound": 50,
+    "opportunitiesGenerated": 49,
+    "leadsScored": 50,
+    "leadsQualified": 0,
+    "retries": 0,
+    "runId": "run-1794230017980-2yankar"
+  },
+  {
+    "batchSize": 100,
+    "totalDurationMs": 11348,
+    "avgMsPerBusiness": 113.5,
+    "heapDeltaMb": -1,
+    "status": "partial",
+    "audited": 0,
+    "auditFailed": 90,
+    "auditSkipped": 10,
+    "contactsFound": 100,
+    "opportunitiesGenerated": 98,
+    "leadsScored": 100,
+    "leadsQualified": 0,
+    "retries": 0,
+    "runId": "run-1794230025716-a3stxs6"
+  }
+]
