@@ -1,0 +1,10 @@
+# Build / deploy ignore for Vercel
+reports/
+docs/
+*.png
+*.jpg
+*.jpeg
+.watech/
+edge-audit-temp-profile/
+*.md
+!README.md
