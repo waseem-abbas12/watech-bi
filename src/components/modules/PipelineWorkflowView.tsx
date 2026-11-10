@@ -936,14 +936,25 @@ export function PipelineWorkflowView() {
 
                       <td className="py-3 px-4">
                         {contacts.length > 0 ? (
-                          <div className="space-y-0.5">
-                            <span className="font-medium text-slate-200">
-                              {contacts.length} contact{contacts.length > 1 ? 's' : ''}
-                            </span>
-                            {contacts[0]?.email && (
+                          <div className="space-y-1">
+                            <div className="flex items-center gap-1.5 flex-wrap">
+                              <span className="font-semibold text-slate-100">
+                                {contacts.find(c => c.isDecisionMaker)?.fullName || contacts[0].fullName}
+                              </span>
+                              <span className="text-[10px] px-1.5 py-0.5 rounded bg-brand-500/15 text-brand-400 font-medium">
+                                {contacts.find(c => c.isDecisionMaker)?.roleOrTitle || contacts[0].roleOrTitle}
+                              </span>
+                            </div>
+                            {(contacts.find(c => c.email)?.email) && (
+                              <div className="text-[11px] text-slate-300 flex items-center gap-1">
+                                <Mail className="w-3 h-3 text-cyan-400 shrink-0" />
+                                <span className="font-mono">{contacts.find(c => c.email)?.email}</span>
+                              </div>
+                            )}
+                            {biz.phone && (
                               <div className="text-[11px] text-slate-400 flex items-center gap-1">
-                                <Mail className="w-3 h-3 text-cyan-400" />
-                                <span className="font-mono truncate max-w-[140px]">{contacts[0].email}</span>
+                                <Phone className="w-3 h-3 text-slate-400 shrink-0" />
+                                <span>{biz.phone}</span>
                               </div>
                             )}
                           </div>
