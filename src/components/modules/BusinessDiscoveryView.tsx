@@ -24,6 +24,7 @@ import type { Business, BusinessStatus } from '@/types';
 import { BusinessModal } from '@/components/modals/BusinessModal';
 import { CsvImportModal } from '@/components/modals/CsvImportModal';
 import { extractDomain } from '@/lib/utils';
+import { CANTON_REAL_BUSINESSES } from '@/lib/db/cantonHvacRealSeed';
 
 export function BusinessDiscoveryView() {
   const { activeProject, setActiveModule } = useProject();
@@ -51,6 +52,19 @@ export function BusinessDiscoveryView() {
       await repository.deleteBusiness(id);
       loadBusinesses();
     }
+  };
+
+  const handleLoadSampleData = async () => {
+    if (!activeProject) return;
+    const businessesToLoad = CANTON_REAL_BUSINESSES.map(b => ({
+      ...b,
+      id: `biz-${Date.now()}-${Math.random().toString(36).substring(2, 6)}`,
+      projectId: activeProject.id,
+    }));
+    await repository.saveBusinesses(businessesToLoad);
+    await loadBusinesses();
+    setImportNotice('Loaded 5 verified market contractor records successfully!');
+    setTimeout(() => setImportNotice(null), 3000);
   };
 
   // CSV Export
@@ -259,8 +273,32 @@ export function BusinessDiscoveryView() {
       {/* Table */}
       <div className="rounded-xl bg-surface-100 border border-border overflow-hidden">
         {filteredBusinesses.length === 0 ? (
-          <div className="text-center py-12 text-xs text-slate-400">
-            No businesses found. Click "Add Business" or import a CSV file to add records.
+          <div className="flex flex-col items-center justify-center py-12 px-4 text-center space-y-4">
+            <div className="w-12 h-12 rounded-xl bg-brand-500/10 flex items-center justify-center text-brand-400">
+              <Building2 className="w-6 h-6" />
+            </div>
+            <div className="space-y-1">
+              <h4 className="text-sm font-semibold text-slate-200">No Businesses in this Project</h4>
+              <p className="text-xs text-slate-400 max-w-sm">
+                Get started by loading verified sample market data, running the Autonomous Pipeline, or importing a CSV file.
+              </p>
+            </div>
+            <div className="flex items-center gap-3">
+              <button
+                onClick={handleLoadSampleData}
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-emerald-500 hover:bg-emerald-600 text-white text-xs font-semibold shadow-sm transition-colors"
+              >
+                <Sparkles className="w-3.5 h-3.5" />
+                <span>Load Verified Market Data</span>
+              </button>
+              <button
+                onClick={() => setActiveModule?.('lead_pipeline')}
+                className="flex items-center gap-1.5 px-3.5 py-2 rounded-lg bg-brand-500 hover:bg-brand-600 text-white text-xs font-semibold shadow-sm transition-colors"
+              >
+                <Search className="w-3.5 h-3.5" />
+                <span>Run Autonomous Pipeline</span>
+              </button>
+            </div>
           </div>
         ) : (
           <div className="overflow-x-auto">

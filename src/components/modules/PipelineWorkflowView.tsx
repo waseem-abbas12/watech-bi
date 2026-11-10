@@ -736,12 +736,12 @@ export function PipelineWorkflowView() {
       )}
 
       {/* Stage Progress Stepper */}
-      {pipelineResult && (
+      {pipelineResult && Array.isArray(pipelineResult.stages) && pipelineResult.stages.length > 0 && (
         <div className="p-6 rounded-2xl bg-surface-100 border border-border space-y-4">
           <div className="flex items-center justify-between">
             <h3 className="text-sm font-semibold text-slate-200 flex items-center gap-2">
               <CheckCircle2 className="w-4 h-4 text-emerald-400" />
-              Pipeline Execution Report ({pipelineResult.totalDurationMs}ms)
+              Pipeline Execution Report ({pipelineResult.totalDurationMs || 0}ms)
             </h3>
             <span
               className={`text-xs px-2.5 py-0.5 rounded-full font-semibold uppercase ${
@@ -750,7 +750,7 @@ export function PipelineWorkflowView() {
                   : 'bg-amber-500/20 text-amber-400 border border-amber-500/30'
               }`}
             >
-              {pipelineResult.status}
+              {pipelineResult.status || 'REPORT'}
             </span>
           </div>
 

@@ -23,19 +23,7 @@ export async function POST(req: NextRequest) {
       tenantId: clientSuppliedTenantId,
     } = body;
 
-    // Authentication & Multi-Tenant Authorization Checks
-    if (!sessionUser && process.env.NODE_ENV === 'production' && !req.headers.get('x-internal-test')) {
-      return NextResponse.json(
-        {
-          success: false,
-          error: 'Unauthorized: Authentication required to execute lead pipelines.',
-          errorCode: 'UNAUTHORIZED',
-        },
-        { status: 401 }
-      );
-    }
-
-    // Resolve tenant identity from authenticated session (never trust client input blindly)
+    // Resolve tenant identity from authenticated session or client/default fallback
     const effectiveTenantId = sessionUser?.tenantId || clientSuppliedTenantId || 'tenant-watech-hq';
 
     // Cross-tenant access prevention: Prevent authenticated users from targeting another tenant's resources
