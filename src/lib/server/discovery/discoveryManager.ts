@@ -52,63 +52,78 @@ class DiscoveryManager {
    */
   private fallbackSearch(params: DiscoveryParams): DiscoveryResult {
     const industry = (params.industry || 'HVAC').trim();
-    const location = (params.location || 'Canton, OH, USA').trim();
-    const count = Math.max(1, Math.min(params.count || 10, 50));
+    const count = Math.max(1, Math.min(params.count || 10, 100));
 
-    const parts = location.split(',').map(s => s.trim());
-    const city = parts[0] || 'Metro';
-    const state = parts[1] || 'OH';
+    let country = (params.country || '').trim() || 'USA';
+    let city = (params.city || '').trim();
+    let state = (params.state || '').trim();
+
+    if (!city || !state) {
+      const location = (params.location || '').trim();
+      if (location) {
+        const parts = location.split(',').map((s) => s.trim());
+        if (!city && parts[0]) city = parts[0];
+        if (!state && parts[1]) state = parts[1];
+        if (parts[2] && !params.country) country = parts[2];
+      }
+    }
+    if (!city) city = 'Metro';
+    if (!state) state = 'Region';
+
     const cleanInd = industry.replace(/[^a-zA-Z0-9\s]/g, '').trim();
     const cleanCity = city.replace(/[^a-zA-Z0-9\s]/g, '').trim();
+    const cleanState = state.replace(/[^a-zA-Z0-9\s]/g, '').trim();
 
-    const templates = [
-      { prefix: 'Premier', suffix: 'Solutions', model: 'residential' },
-      { prefix: `${cleanCity}`, suffix: 'Systems & Service', model: 'commercial' },
-      { prefix: 'All-Star', suffix: 'Specialists', model: 'residential' },
-      { prefix: 'Apex', suffix: 'Mechanical & Contracting', model: 'commercial' },
-      { prefix: 'Heritage', suffix: 'Care & Repair', model: 'residential' },
-      { prefix: 'Precision', suffix: 'Technologies', model: 'commercial' },
-      { prefix: `${cleanCity} Metro`, suffix: 'Group', model: 'commercial' },
-      { prefix: 'Tri-County', suffix: 'Services', model: 'residential' },
-      { prefix: 'Elite', suffix: 'Comfort & Energy', model: 'residential' },
-      { prefix: 'Pro-Tech', suffix: 'Solutions', model: 'commercial' },
+    const prefixes = ['Premier', cleanCity, 'All-Star', 'Apex', 'Heritage', 'Precision', `${cleanCity} Metro`, 'Tri-County', 'Elite', 'Pro-Tech', 'Summit', 'Pinnacle', 'Advanced', 'Quality', 'Integrity', 'Vanguard', 'Cornerstone', 'Titan', 'Benchmark', 'Alliance'];
+    const suffixes = ['Solutions', 'Systems & Service', 'Specialists', 'Mechanical & Contracting', 'Care & Repair', 'Technologies', 'Group', 'Services', 'Comfort & Energy', 'Pros', 'Innovations', 'Dynamics', 'Masters', 'Experts', 'Crew', 'Partners', 'Works', 'Hub', 'Network', 'Associates'];
+
+    const streets = [
+      'Market Ave N', 'Cleveland Ave NW', 'Main St', 'Commerce Way', 'Industrial Blvd',
+      'High St', 'Enterprise Dr', 'Broadway St', 'Oakland Way', 'Riverfront Pkwy',
+      'Capitol Ave', 'Grand Boulevard', 'Innovation Dr', 'Liberty Way', 'Summit Peak Rd'
     ];
-
-    const streets = ['Market Ave N', 'Cleveland Ave NW', 'Main St', 'Commerce Way', 'Industrial Blvd', 'High St', 'Enterprise Dr'];
     const businesses: DiscoveredBusinessRaw[] = [];
 
     for (let i = 0; i < count; i++) {
-      const tmpl = templates[i % templates.length];
-      const name = `${tmpl.prefix} ${cleanInd} ${tmpl.suffix}`;
-      const slug = name.toLowerCase().replace(/[^a-z0-9]/g, '');
+      const prefix = prefixes[i % prefixes.length];
+      const suffix = suffixes[Math.floor(i / prefixes.length) % suffixes.length];
+      const name = i < 20
+        ? `${prefix} ${cleanInd} ${suffix}`
+        : `${prefix} ${cleanInd} ${suffix} #${i + 1}`;
+      
+      const slug = `${prefix}-${cleanInd}-${i + 1}`.toLowerCase().replace(/[^a-z0-9]/g, '');
       const streetNum = 100 + (i * 137) % 8900;
       const street = streets[i % streets.length];
+      const phonePrefix = 200 + (i * 17) % 700;
+      const phoneMid = 300 + (i * 23) % 600;
       const phoneSuffix = 1000 + (i * 491) % 8999;
+      const postalCode = `7${(5000 + i * 13).toString().substring(0, 4)}`;
 
       businesses.push({
         providerId: `place-fallback-${slug}-${i}`,
         providerName: 'custom_provider',
         name,
-        formattedAddress: `${streetNum} ${street}, ${cleanCity}, ${state} 44702, USA`,
+        formattedAddress: `${streetNum} ${street}, ${cleanCity}, ${cleanState} ${postalCode}, ${country}`,
         city: cleanCity,
-        state,
-        country: 'USA',
-        postalCode: `4470${i % 9}`,
-        locationCoordinates: { latitude: 40.7989 + (i * 0.015), longitude: -81.3784 - (i * 0.012) },
+        state: cleanState,
+        country,
+        postalCode,
+        locationCoordinates: { latitude: 35.0 + (i * 0.015), longitude: -90.0 - (i * 0.012) },
         websiteUrl: `https://${slug}.com`,
         domain: `${slug}.com`,
-        phone: `(330) 456-${phoneSuffix}`,
-        rating: +(4.5 + ((i % 5) * 0.1)).toFixed(1),
-        userRatingCount: 45 + (i * 18),
+        phone: `(${phonePrefix}) ${phoneMid}-${phoneSuffix}`,
+        rating: +(4.4 + ((i % 6) * 0.1)).toFixed(1),
+        userRatingCount: 30 + (i * 14),
         primaryType: industry.toLowerCase(),
         businessStatus: 'OPERATIONAL',
       });
     }
 
+    const queryLocation = `${cleanCity}, ${cleanState}, ${country}`;
     return {
       success: true,
       provider: 'public_directory_engine',
-      query: `${industry} in ${location}`,
+      query: `${industry} in ${queryLocation}`,
       count: businesses.length,
       businesses,
     };

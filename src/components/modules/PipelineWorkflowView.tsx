@@ -34,7 +34,7 @@ import {
 import Papa from 'papaparse';
 import { useProject } from '@/context/ProjectContext';
 import { repository } from '@/lib/db/repository';
-import { clientPipelineOrchestrator } from '@/lib/services/pipelineOrchestrator';
+import { clientPipelineOrchestrator, type BatchProgressUpdate } from '@/lib/services/pipelineOrchestrator';
 import type {
   PipelineExecutionResult,
   StageResult,
@@ -42,6 +42,10 @@ import type {
 } from '@/lib/server/pipeline/pipelineRunner';
 import type { Business, WebsiteAudit, Contact, LeadScore, Opportunity, ResearchProject } from '@/types';
 import { CANTON_PIPELINE_RESULT } from '@/lib/db/cantonHvacRealSeed';
+import {
+  DiscoverySearchInterface,
+  type DiscoveryExecutionPayload,
+} from '@/components/discovery/DiscoverySearchInterface';
 
 const STAGE_LABELS: Record<string, { name: string; desc: string }> = {
   BUSINESS_DISCOVERY: { name: '1. Places Discovery', desc: 'Querying external places API' },
@@ -65,13 +69,13 @@ export function PipelineWorkflowView() {
   const [pipelineMode, setPipelineMode] = useState<PipelineMode>('existing_businesses');
 
   // Mode A Inputs (Live Discovery)
-  const [industry, setIndustry] = useState(activeProject?.industryNiche || 'HVAC');
+  const [industry, setIndustry] = useState(activeProject?.industryNiche || '');
   const [location, setLocation] = useState(
     activeProject?.cityArea
-      ? `${activeProject.cityArea}, ${activeProject.stateRegion || ''}, ${activeProject.country || 'USA'}`
-      : 'Canton, Ohio, USA'
+      ? [activeProject.cityArea, activeProject.stateRegion, activeProject.country].filter(Boolean).join(', ')
+      : ''
   );
-  const [discoveryCount, setDiscoveryCount] = useState<number>(10);
+  const [discoveryCount, setDiscoveryCount] = useState<number>(25);
 
   // Mode B Inputs (Existing Businesses from Dexie)
   const [selectedProjectId, setSelectedProjectId] = useState<string>(activeProject?.id || '');
@@ -90,6 +94,7 @@ export function PipelineWorkflowView() {
   const [persistedCounts, setPersistedCounts] = useState<any>(null);
   const [errorMessage, setErrorMessage] = useState<string | null>(null);
   const [unconfiguredDetails, setUnconfiguredDetails] = useState<{ error?: string; help?: string } | null>(null);
+  const [batchProgress, setBatchProgress] = useState<BatchProgressUpdate | null>(null);
 
   // Selected business for dossier modal
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(null);
@@ -138,14 +143,14 @@ export function PipelineWorkflowView() {
     ? existingBusinessesList.filter((b) => !b.isDemo && b.id !== 'biz-1' && b.projectId !== 'proj-demo-1')
     : existingBusinessesList;
 
-  // Toggle individual business selection
+  // Toggle individual business selection (up to 100 leads)
   const toggleBusinessSelection = (id: string) => {
     const updated = new Set(selectedBusinessIds);
     if (updated.has(id)) {
       updated.delete(id);
     } else {
-      if (updated.size >= 10) {
-        alert('You can select up to 10 businesses per pipeline run to respect request limits.');
+      if (updated.size >= 100) {
+        alert('You can select up to 100 businesses per pipeline run.');
         return;
       }
       updated.add(id);
@@ -153,9 +158,9 @@ export function PipelineWorkflowView() {
     setSelectedBusinessIds(updated);
   };
 
-  // Select all up to 10
+  // Select all up to 100
   const handleSelectAll = () => {
-    const idsToSelect = new Set(displayedBusinesses.slice(0, 10).map((b) => b.id));
+    const idsToSelect = new Set(displayedBusinesses.slice(0, 100).map((b) => b.id));
     setSelectedBusinessIds(idsToSelect);
   };
 
@@ -171,6 +176,7 @@ export function PipelineWorkflowView() {
     setUnconfiguredDetails(null);
     setPipelineResult(null);
     setPersistedCounts(null);
+    setBatchProgress(null);
     setCurrentStageIndex(0);
 
     try {
@@ -192,6 +198,9 @@ export function PipelineWorkflowView() {
           projectId: selectedProjectId,
           projectName: currentProj?.name || 'Processed Existing Businesses',
           excludeDemo: excludeDemoRecords,
+          onBatchProgress: (prog) => {
+            setBatchProgress(prog);
+          },
         });
 
         setPipelineResult(response.result);
@@ -211,8 +220,11 @@ export function PipelineWorkflowView() {
           count: discoveryCount,
           minimumScore,
           projectId: activeProject?.id,
-          projectName: activeProject?.name || `${industry} Pipeline ?" ${location}`,
+          projectName: activeProject?.name || `${industry} Pipeline — ${location}`,
           excludeDemo: true,
+          onBatchProgress: (prog) => {
+            setBatchProgress(prog);
+          },
         });
 
         setPipelineResult(response.result);
@@ -230,6 +242,64 @@ export function PipelineWorkflowView() {
         } else {
           await refreshProjects();
         }
+      }
+    } catch (err: any) {
+      setErrorMessage(err.message || 'Network request failed');
+    } finally {
+      setIsRunning(false);
+      setCurrentStageIndex(-1);
+    }
+  };
+
+  // Dedicated Discovery Execution handler triggered from DiscoverySearchInterface
+  const handleExecuteDiscovery = async (payload: DiscoveryExecutionPayload) => {
+    setLocation(payload.location);
+    setIndustry(payload.industry);
+    setDiscoveryCount(payload.count);
+    setMinimumScore(payload.minimumScore);
+
+    setIsRunning(true);
+    setErrorMessage(null);
+    setUnconfiguredDetails(null);
+    setPipelineResult(null);
+    setPersistedCounts(null);
+    setBatchProgress(null);
+    setCurrentStageIndex(0);
+
+    try {
+      const response = await clientPipelineOrchestrator.runAndPersist({
+        mode: 'discovery',
+        industry: payload.industry,
+        location: payload.location,
+        country: payload.rawConfig.country,
+        state: payload.rawConfig.state,
+        city: payload.rawConfig.city,
+        count: payload.count,
+        minimumScore: payload.minimumScore,
+        projectId: activeProject?.id,
+        projectName:
+          activeProject?.name ||
+          `${payload.rawConfig.niche || payload.rawConfig.industry} — ${payload.rawConfig.city || payload.location}`,
+        excludeDemo: true,
+        onBatchProgress: (prog) => {
+          setBatchProgress(prog);
+        },
+      });
+
+      setPipelineResult(response.result);
+      setPersistedCounts(response.persistedCounts);
+
+      if (!response.result.success) {
+        if (response.result.errorCode === 'PROVIDER_NOT_CONFIGURED') {
+          setUnconfiguredDetails({
+            error: response.result.error,
+            help: response.result.help,
+          });
+        } else {
+          setErrorMessage(response.result.error || 'Pipeline execution failed.');
+        }
+      } else {
+        await refreshProjects();
       }
     } catch (err: any) {
       setErrorMessage(err.message || 'Network request failed');
@@ -581,127 +651,22 @@ export function PipelineWorkflowView() {
       )}
 
       {/* ======================================================== */}
-      {/* MODE A: DISCOVER NEW BUSINESSES (PLACES API)             */}
+      {/* MODE A: DISCOVER NEW BUSINESSES (PRECISION SEARCH)       */}
       {/* ======================================================== */}
       {pipelineMode === 'discovery' && (
-        <div className="p-6 rounded-2xl bg-surface-100 border border-border shadow-sm space-y-5">
-          <div className="flex items-center justify-between border-b border-border pb-3">
-            <div>
-              <h2 className="text-base font-semibold text-slate-200 flex items-center gap-2">
-                <Globe2 className="w-4 h-4 text-blue-400" />
-                Mode A: Live Places Discovery Search
-              </h2>
-              <p className="text-xs text-slate-400 mt-0.5">
-                Executes live Google Places API (New) Text Search, normalizes records, and runs the 10-stage pipeline.
-              </p>
-            </div>
-            <span className="px-2.5 py-1 rounded-lg text-xs font-mono bg-amber-500/10 text-amber-400 border border-amber-500/30">
-              Provider: Google Places (New)
-            </span>
-          </div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4">
-            {/* Industry */}
-            <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">Target Industry / Niche</label>
-              <input
-                type="text"
-                value={industry}
-                onChange={(e) => setIndustry(e.target.value)}
-                placeholder="e.g. HVAC, Commercial Roofing"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-border text-sm text-slate-100 focus:outline-none focus:border-blue-500 transition-colors"
-              />
-              <div className="flex flex-wrap gap-1.5 mt-2">
-                {INDUSTRY_PRESETS.map((p) => (
-                  <button
-                    key={p}
-                    type="button"
-                    onClick={() => setIndustry(p)}
-                    className={`text-[11px] px-2 py-0.5 rounded-md border transition-colors ${
-                      industry === p
-                        ? 'bg-blue-500/20 text-blue-300 border-blue-500/40'
-                        : 'bg-slate-900/60 text-slate-400 border-border hover:text-slate-200'
-                    }`}
-                  >
-                    {p}
-                  </button>
-                ))}
-              </div>
-            </div>
-
-            {/* Location */}
-            <div>
-              <label className="block text-xs font-medium text-slate-400 mb-1.5">Target Location</label>
-              <input
-                type="text"
-                value={location}
-                onChange={(e) => setLocation(e.target.value)}
-                placeholder="e.g. Canton, Ohio, USA"
-                className="w-full px-3.5 py-2.5 rounded-xl bg-slate-900 border border-border text-sm text-slate-100 focus:outline-none focus:border-blue-500 transition-colors"
-              />
-              <p className="text-[11px] text-slate-500 mt-1">City, State, Country</p>
-            </div>
-
-            {/* Business Count */}
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs font-medium text-slate-400">Target Businesses</label>
-                <span className="text-xs font-mono font-semibold text-blue-400">{discoveryCount} targets</span>
-              </div>
-              <input
-                type="range"
-                min="1"
-                max="20"
-                value={discoveryCount}
-                onChange={(e) => setDiscoveryCount(parseInt(e.target.value, 10))}
-                className="w-full accent-blue-500 h-2 bg-slate-900 rounded-lg cursor-pointer"
-              />
-              <div className="flex justify-between text-[10px] text-slate-500 mt-1">
-                <span>1</span>
-                <span>10</span>
-                <span>20 max</span>
-              </div>
-            </div>
-
-            {/* Minimum Lead Score */}
-            <div>
-              <div className="flex items-center justify-between mb-1.5">
-                <label className="text-xs font-medium text-slate-400">Min. Qualification Score</label>
-                <span className="text-xs font-mono font-semibold text-emerald-400">{minimumScore}/100</span>
-              </div>
-              <input
-                type="range"
-                min="0"
-                max="90"
-                step="5"
-                value={minimumScore}
-                onChange={(e) => setMinimumScore(parseInt(e.target.value, 10))}
-                className="w-full accent-emerald-500 h-2 bg-slate-900 rounded-lg cursor-pointer"
-              />
-              <p className="text-[11px] text-slate-500 mt-1">Auto-qualify into CRM</p>
-            </div>
-          </div>
-
-          <div className="pt-4 border-t border-border flex justify-end">
-            <button
-              onClick={handleRunPipeline}
-              disabled={isRunning || !industry.trim() || !location.trim()}
-              className="flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-gradient-to-r from-blue-600 to-indigo-600 hover:from-blue-500 hover:to-indigo-500 disabled:opacity-50 disabled:cursor-not-allowed text-white font-semibold text-sm shadow-lg shadow-blue-500/20 transition-all"
-            >
-              {isRunning ? (
-                <>
-                  <div className="w-4 h-4 border-2 border-white/30 border-t-white rounded-full animate-spin" />
-                  <span>Executing Discovery Pipeline...</span>
-                </>
-              ) : (
-                <>
-                  <Play className="w-4 h-4 fill-current" />
-                  <span>Execute Discovery Pipeline</span>
-                </>
-              )}
-            </button>
-          </div>
-        </div>
+        <DiscoverySearchInterface
+          initialValues={{
+            country: activeProject?.country || '',
+            state: activeProject?.stateRegion || '',
+            city: activeProject?.cityArea || '',
+            industry: activeProject?.industryNiche || '',
+            niche: '',
+            targetCount: discoveryCount,
+            minimumScore: minimumScore,
+          }}
+          onExecute={handleExecuteDiscovery}
+          isRunning={isRunning}
+        />
       )}
 
       {/* Provider Unconfigured Notice (if triggered in Mode A) */}
@@ -732,6 +697,36 @@ export function PipelineWorkflowView() {
         <div className="p-4 rounded-xl bg-rose-500/10 border border-rose-500/30 text-rose-300 text-xs flex items-center gap-2">
           <XCircle className="w-4 h-4 text-rose-400 shrink-0" />
           <span>{errorMessage}</span>
+        </div>
+      )}
+
+      {/* Progressive Batch Progress Card */}
+      {batchProgress && (
+        <div className="p-5 rounded-2xl bg-gradient-to-r from-blue-950/40 via-surface-100 to-indigo-950/40 border border-blue-500/30 space-y-3">
+          <div className="flex flex-col sm:flex-row sm:items-center justify-between gap-2">
+            <div className="flex items-center gap-2">
+              <div className="w-2.5 h-2.5 rounded-full bg-blue-400 animate-ping" />
+              <span className="text-xs font-semibold uppercase tracking-wider text-blue-400">
+                Batch {batchProgress.currentBatch} of {batchProgress.totalBatches}
+              </span>
+              <span className="text-xs text-slate-400">•</span>
+              <span className="text-xs text-slate-300 font-medium">{batchProgress.message}</span>
+            </div>
+            <div className="text-xs font-mono text-slate-300">
+              Completed: <strong className="text-emerald-400">{batchProgress.completed}</strong> / Remaining:{' '}
+              <strong className="text-amber-400">{Math.max(0, batchProgress.total - batchProgress.completed)}</strong> (Total: {batchProgress.total})
+            </div>
+          </div>
+
+          {/* Progress Bar */}
+          <div className="w-full bg-slate-900 rounded-full h-2 overflow-hidden border border-border">
+            <div
+              className="bg-gradient-to-r from-blue-500 to-indigo-500 h-2 rounded-full transition-all duration-300"
+              style={{
+                width: `${batchProgress.total > 0 ? Math.min(100, Math.round((batchProgress.completed / batchProgress.total) * 100)) : 5}%`,
+              }}
+            />
+          </div>
         </div>
       )}
 

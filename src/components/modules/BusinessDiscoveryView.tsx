@@ -25,6 +25,11 @@ import { BusinessModal } from '@/components/modals/BusinessModal';
 import { CsvImportModal } from '@/components/modals/CsvImportModal';
 import { extractDomain } from '@/lib/utils';
 import { CANTON_REAL_BUSINESSES } from '@/lib/db/cantonHvacRealSeed';
+import { clientPipelineOrchestrator } from '@/lib/services/pipelineOrchestrator';
+import {
+  DiscoverySearchInterface,
+  type DiscoveryExecutionPayload,
+} from '@/components/discovery/DiscoverySearchInterface';
 
 export function BusinessDiscoveryView() {
   const { activeProject, setActiveModule } = useProject();
@@ -35,7 +40,42 @@ export function BusinessDiscoveryView() {
   const [editingBusiness, setEditingBusiness] = useState<Business | null>(null);
   const [isCsvModalOpen, setIsCsvModalOpen] = useState(false);
   const [importNotice, setImportNotice] = useState<string | null>(null);
+  const [isDiscoveryOpen, setIsDiscoveryOpen] = useState(false);
+  const [isExecutingDiscovery, setIsExecutingDiscovery] = useState(false);
+  const [discoveryError, setDiscoveryError] = useState<string | null>(null);
   const fileInputRef = useRef<HTMLInputElement>(null);
+
+  const handleDiscoveryExecute = async (payload: DiscoveryExecutionPayload) => {
+    setIsExecutingDiscovery(true);
+    setDiscoveryError(null);
+    try {
+      const response = await clientPipelineOrchestrator.runAndPersist({
+        mode: 'discovery',
+        industry: payload.industry,
+        location: payload.location,
+        count: payload.count,
+        minimumScore: payload.minimumScore,
+        projectId: activeProject?.id,
+        projectName:
+          activeProject?.name ||
+          `${payload.rawConfig.niche || payload.rawConfig.industry} — ${payload.rawConfig.city || payload.location}`,
+        excludeDemo: true,
+      });
+
+      if (!response.result.success) {
+        setDiscoveryError(response.result.error || 'Discovery search failed to complete.');
+      } else {
+        const count = response.persistedCounts?.businesses ?? response.result.data?.businesses?.length ?? 0;
+        setImportNotice(`Discovered & persisted ${count} businesses for ${payload.rawConfig.city || payload.location}!`);
+        setIsDiscoveryOpen(false);
+        await loadBusinesses();
+      }
+    } catch (err: any) {
+      setDiscoveryError(err?.message || 'Failed to execute discovery pipeline.');
+    } finally {
+      setIsExecutingDiscovery(false);
+    }
+  };
 
   const loadBusinesses = async () => {
     if (!activeProject) return;
@@ -207,6 +247,13 @@ export function BusinessDiscoveryView() {
 
         <div className="flex items-center gap-2 flex-wrap">
           <button
+            onClick={() => setIsDiscoveryOpen(!isDiscoveryOpen)}
+            className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-blue-600/10 hover:bg-blue-600/20 text-blue-300 border border-blue-500/30 text-xs font-medium transition-colors"
+          >
+            <Globe2 className="w-3.5 h-3.5 text-blue-400" />
+            <span>{isDiscoveryOpen ? 'Hide Campaign Search' : 'Discovery Campaign'}</span>
+          </button>
+          <button
             onClick={() => setIsCsvModalOpen(true)}
             className="flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-surface-100 hover:bg-surface-200 text-xs font-medium text-slate-200 border border-border transition-colors"
           >
@@ -232,6 +279,34 @@ export function BusinessDiscoveryView() {
           </button>
         </div>
       </div>
+
+      {isDiscoveryOpen && (
+        <div className="space-y-3">
+          <DiscoverySearchInterface
+            initialValues={{
+              country: activeProject?.country || '',
+              state: activeProject?.stateRegion || '',
+              city: activeProject?.cityArea || '',
+              industry: activeProject?.industryNiche || '',
+              niche: '',
+              targetCount: 25,
+              minimumScore: 50,
+            }}
+            showCancelButton={true}
+            onCancel={() => setIsDiscoveryOpen(false)}
+            onExecute={handleDiscoveryExecute}
+            isRunning={isExecutingDiscovery}
+          />
+          {discoveryError && (
+            <div className="p-3.5 rounded-xl bg-amber-500/10 border border-amber-500/30 text-amber-300 text-xs flex items-center justify-between">
+              <span>{discoveryError}</span>
+              <button onClick={() => setDiscoveryError(null)} className="text-amber-400 hover:text-white text-[11px]">
+                Dismiss
+              </button>
+            </div>
+          )}
+        </div>
+      )}
 
       {importNotice && (
         <div className="p-3 rounded-lg bg-blue-500/10 border border-blue-500/30 text-blue-300 text-xs flex items-center justify-between">

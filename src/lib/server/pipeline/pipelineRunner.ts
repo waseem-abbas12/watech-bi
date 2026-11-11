@@ -62,6 +62,9 @@ export interface PipelineExecuteInput {
   mode?: PipelineMode;
   industry?: string;
   location?: string;
+  country?: string;
+  state?: string;
+  city?: string;
   count?: number;
   minimumScore?: number;
   projectId?: string;
@@ -70,6 +73,7 @@ export interface PipelineExecuteInput {
   excludeDemo?: boolean;
   tenantId?: string;
   userId?: string;
+  discoverOnly?: boolean;
 }
 
 export interface StageResult {
@@ -334,12 +338,23 @@ export async function executePipeline(input: PipelineExecuteInput): Promise<Pipe
     const stages: StageResult[] = [];
     let totalRetries = 0;
 
+    const locationParts = location.split(',').map((s) => s.trim()).filter(Boolean);
+    const effectiveCountry =
+      input.country?.trim() ||
+      (locationParts.length > 0 ? locationParts[locationParts.length - 1] : 'Global');
+    const effectiveState =
+      input.state?.trim() ||
+      (locationParts.length >= 3 ? locationParts[locationParts.length - 2] : '');
+    const effectiveCity =
+      input.city?.trim() ||
+      (locationParts.length >= 2 ? locationParts[0] : location);
+
     const project: ResearchProject = {
       id: projectId,
       name: projectName,
-      country: 'USA',
-      stateRegion: location.includes(',') ? location.split(',')[1]?.trim() || '' : '',
-      cityArea: location.includes(',') ? location.split(',')[0]?.trim() || location : location,
+      country: effectiveCountry,
+      stateRegion: effectiveState,
+      cityArea: effectiveCity,
       industryNiche: industry,
       businessModel: 'commercial',
       watechServicesToEvaluate: [
@@ -445,6 +460,9 @@ export async function executePipeline(input: PipelineExecuteInput): Promise<Pipe
       const discoveryResult = await discoveryManager.discover({
         industry,
         location,
+        country: input.country,
+        state: input.state,
+        city: input.city,
         count,
       });
 
@@ -562,7 +580,7 @@ export async function executePipeline(input: PipelineExecuteInput): Promise<Pipe
           fullAddress: disc.formattedAddress,
           city: disc.city,
           state: disc.state,
-          country: disc.country || 'USA',
+          country: disc.country || effectiveCountry,
           postalCode: disc.postalCode,
           serviceArea: location,
           businessModel: 'commercial',
@@ -591,6 +609,51 @@ export async function executePipeline(input: PipelineExecuteInput): Promise<Pipe
         retryCount: 0,
         details: { deduplicatedCount },
       });
+    }
+
+    // Fast-path: When caller requests discovery only, return discovered businesses for batched client processing
+    if (input.discoverOnly) {
+      releasePipelineLock(lockKey);
+      await tenantRepo.releaseDistributedLock(projectId, runId);
+
+      return {
+        runId,
+        success: true,
+        status: 'completed',
+        mode,
+        industry,
+        location,
+        requestedCount: count,
+        minimumScore,
+        totalDurationMs: Date.now() - startTime,
+        startedAt: runStartedIso,
+        completedAt: new Date().toISOString(),
+        stages,
+        summary: {
+          totalDiscovered: totalDiscoveredCount,
+          deduplicated: deduplicatedCount,
+          audited: 0,
+          auditFailed: 0,
+          auditSkipped: 0,
+          contactsFound: 0,
+          emailsVerified: 0,
+          opportunitiesGenerated: 0,
+          leadsScored: 0,
+          leadsQualified: 0,
+          totalRetries: 0,
+        },
+        data: {
+          project,
+          businesses,
+          audits: [],
+          contacts: [],
+          emailRecords: [],
+          opportunities: [],
+          leadScores: [],
+          followUpSchedules: [],
+          crmActivities: [],
+        },
+      };
     }
 
     // Storage for HTML snippet per business for contact extraction

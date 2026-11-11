@@ -1,6 +1,9 @@
 export interface DiscoveryParams {
   industry: string;
-  location: string;
+  location?: string;
+  country?: string;
+  state?: string;
+  city?: string;
   count?: number;
   pageToken?: string;
 }

@@ -14,12 +14,16 @@ export async function POST(req: NextRequest) {
       mode: requestedMode,
       industry,
       location,
+      country,
+      state,
+      city,
       count = 10,
       minimumScore = 50,
       projectId,
       projectName,
       existingBusinesses,
       excludeDemo = true,
+      discoverOnly = false,
       tenantId: clientSuppliedTenantId,
     } = body;
 
@@ -129,30 +133,41 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    if (!location || typeof location !== 'string' || !location.trim()) {
+    const geoParts = [city, state, country].filter(Boolean).map((s) => String(s).trim());
+    const effectiveLocation =
+      location && typeof location === 'string' && location.trim()
+        ? location.trim()
+        : geoParts.join(', ');
+
+    if (!effectiveLocation) {
       return NextResponse.json(
         {
           success: false,
-          error: 'Location is required for live discovery (e.g., "Canton, Ohio, USA", "Austin, TX").',
+          error:
+            'Location or geographic fields (Country, State, City) are required for live discovery (e.g., "Lahore, Punjab, Pakistan", "Austin, TX, USA").',
           errorCode: 'INVALID_ARGUMENT',
         },
         { status: 400 }
       );
     }
 
-    const parsedCount = Math.max(1, Math.min(Number(count) || 10, 50));
+    const parsedCount = Math.max(1, Math.min(Number(count) || 10, 100));
     const parsedScore = Math.max(0, Math.min(Number(minimumScore) || 50, 100));
 
     const pipelineInput: PipelineExecuteInput = {
       mode: 'discovery',
       industry: industry.trim(),
-      location: location.trim(),
+      location: effectiveLocation,
+      country: typeof country === 'string' && country.trim() ? country.trim() : undefined,
+      state: typeof state === 'string' && state.trim() ? state.trim() : undefined,
+      city: typeof city === 'string' && city.trim() ? city.trim() : undefined,
       count: parsedCount,
       minimumScore: parsedScore,
       projectId: typeof projectId === 'string' ? projectId : undefined,
       projectName: typeof projectName === 'string' ? projectName : undefined,
       existingBusinesses: Array.isArray(existingBusinesses) ? existingBusinesses : undefined,
       excludeDemo: Boolean(excludeDemo),
+      discoverOnly: Boolean(discoverOnly),
       tenantId: effectiveTenantId,
       userId: sessionUser?.userId,
     };

@@ -14,8 +14,10 @@ export class GooglePlacesDiscoveryProvider implements BusinessDiscoveryProvider 
   }
 
   async search(params: DiscoveryParams): Promise<DiscoveryResult> {
-    const { industry, location, count = 10 } = params;
-    const query = `${industry.trim()} in ${location.trim()}`;
+    const { industry, count = 10 } = params;
+    const geoParts = [params.city, params.state, params.country].filter(Boolean).map((s) => String(s).trim());
+    const locationQuery = geoParts.length > 0 ? geoParts.join(', ') : (params.location || '').trim();
+    const query = `${industry.trim()} in ${locationQuery}`.trim();
 
     if (!this.isConfigured()) {
       return {
@@ -33,9 +35,14 @@ export class GooglePlacesDiscoveryProvider implements BusinessDiscoveryProvider 
     }
 
     const apiKey = process.env.GOOGLE_MAPS_API_KEY!.trim();
-    const targetCount = Math.max(1, Math.min(count, 50));
+    const targetCount = Math.max(1, Math.min(count, 100));
     const accumulated: DiscoveredBusinessRaw[] = [];
     let currentPageToken = params.pageToken;
+
+    // Strict geographic validation criteria
+    const reqCountry = params.country?.trim().toLowerCase();
+    const reqState = params.state?.trim().toLowerCase();
+    const reqCity = params.city?.trim().toLowerCase();
 
     try {
       while (accumulated.length < targetCount) {
@@ -98,9 +105,40 @@ export class GooglePlacesDiscoveryProvider implements BusinessDiscoveryProvider 
 
         for (const place of rawPlaces) {
           const normalized = this.normalizePlace(place);
-          if (normalized) {
-            accumulated.push(normalized);
+          if (!normalized) continue;
+
+          // Strict geographic filtering: do not silently expand target area
+          if (reqCountry && normalized.country) {
+            const placeCountry = normalized.country.toLowerCase();
+            const countryMatches =
+              placeCountry === reqCountry ||
+              (reqCountry === 'usa' && (placeCountry === 'united states' || placeCountry === 'us')) ||
+              (reqCountry === 'uk' && (placeCountry === 'united kingdom' || placeCountry === 'gb'));
+            if (!countryMatches && !placeCountry.includes(reqCountry) && !reqCountry.includes(placeCountry)) {
+              continue;
+            }
           }
+
+          if (reqState && normalized.state) {
+            const placeState = normalized.state.toLowerCase();
+            if (placeState !== reqState && !placeState.includes(reqState) && !reqState.includes(placeState)) {
+              // check formatted address
+              const formatted = (normalized.formattedAddress || '').toLowerCase();
+              if (!formatted.includes(reqState)) {
+                continue;
+              }
+            }
+          }
+
+          if (reqCity) {
+            const placeCity = (normalized.city || '').toLowerCase();
+            const formatted = (normalized.formattedAddress || '').toLowerCase();
+            if (placeCity !== reqCity && !placeCity.includes(reqCity) && !formatted.includes(reqCity)) {
+              continue;
+            }
+          }
+
+          accumulated.push(normalized);
           if (accumulated.length >= targetCount) break;
         }
 
@@ -111,7 +149,7 @@ export class GooglePlacesDiscoveryProvider implements BusinessDiscoveryProvider 
         currentPageToken = data.nextPageToken;
         // Small delay if fetching next page per Google pagination guideline
         if (accumulated.length < targetCount) {
-          await new Promise((resolve) => setTimeout(resolve, 800));
+          await new Promise((resolve) => setTimeout(resolve, 500));
         }
       }
 
