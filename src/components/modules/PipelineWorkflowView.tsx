@@ -1,6 +1,6 @@
 'use client';
 
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   Zap,
   Play,
@@ -26,6 +26,7 @@ import {
   Calendar,
   Layers,
   Database,
+  Search,
   Filter,
   CheckSquare,
   Square,
@@ -98,6 +99,12 @@ export function PipelineWorkflowView() {
 
   // Selected business for dossier modal
   const [selectedBusiness, setSelectedBusiness] = useState<Business | null>(null);
+
+  // Results Table Search, Filter & Pagination
+  const [resultsSearchQuery, setResultsSearchQuery] = useState('');
+  const [resultsFilterStatus, setResultsFilterStatus] = useState<'all' | 'qualified' | 'unqualified'>('all');
+  const [currentPage, setCurrentPage] = useState(1);
+  const [pageSize, setPageSize] = useState(10);
 
   // Synchronize active project
   useEffect(() => {
@@ -309,7 +316,35 @@ export function PipelineWorkflowView() {
     }
   };
 
-  // CSV Export
+  // Filtered and paginated pipeline results
+  const filteredResultBusinesses = useMemo(() => {
+    if (!pipelineResult?.data?.businesses) return [];
+    return pipelineResult.data.businesses.filter((biz) => {
+      const q = resultsSearchQuery.toLowerCase().trim();
+      const matchesSearch =
+        !q ||
+        biz.officialName.toLowerCase().includes(q) ||
+        (biz.domain && biz.domain.toLowerCase().includes(q)) ||
+        (biz.city && biz.city.toLowerCase().includes(q)) ||
+        (biz.phone && biz.phone.includes(q)) ||
+        (biz.industry && biz.industry.toLowerCase().includes(q));
+
+      const matchesStatus =
+        resultsFilterStatus === 'all' ||
+        (resultsFilterStatus === 'qualified' && biz.status === 'qualified') ||
+        (resultsFilterStatus === 'unqualified' && biz.status !== 'qualified');
+
+      return matchesSearch && matchesStatus;
+    });
+  }, [pipelineResult, resultsSearchQuery, resultsFilterStatus]);
+
+  const totalResultPages = Math.ceil(filteredResultBusinesses.length / pageSize) || 1;
+  const paginatedResultBusinesses = useMemo(() => {
+    const start = (currentPage - 1) * pageSize;
+    return filteredResultBusinesses.slice(start, start + pageSize);
+  }, [filteredResultBusinesses, currentPage, pageSize]);
+
+  // CSV Export with Complete Digital Footprint Fields
   const handleExportCsv = () => {
     if (!pipelineResult?.data?.businesses || pipelineResult.data.businesses.length === 0) return;
 
@@ -321,10 +356,33 @@ export function PipelineWorkflowView() {
 
       return {
         'Business Name': biz.officialName,
+        'Country': biz.country || 'USA',
+        'State / Region': biz.state || '',
+        'City': biz.city || '',
+        'Address': biz.fullAddress || '',
+        'Industry': biz.industry || '',
+        'Subcategory': biz.subcategory || '',
+        'Business Description': biz.description || '',
+        'Services Offered': biz.services?.join('; ') || '',
+        'Official Website': biz.websiteUrl || '',
+        'Domain': biz.domain || '',
+        'LinkedIn': biz.socialProfiles?.linkedin || biz.linkedinCompanyUrl || '',
+        'Facebook': biz.socialProfiles?.facebook || '',
+        'Instagram': biz.socialProfiles?.instagram || '',
+        'YouTube': biz.socialProfiles?.youtube || '',
+        'X / Twitter': biz.socialProfiles?.twitter || '',
+        'TikTok': biz.socialProfiles?.tiktok || '',
+        'Pinterest': biz.socialProfiles?.pinterest || '',
+        'About Page': biz.aboutPageUrl || '',
+        'Contact Page': biz.contactPageUrl || '',
+        'Services Page': biz.servicesPageUrl || '',
+        'Team Page': biz.teamPageUrl || '',
+        'Contact Form URL': biz.contactFormUrl || '',
+        'Business Hours': biz.businessHours?.rawText || '',
+        'Primary Phone': biz.phone || '',
+        'All Public Phones': biz.phoneNumbers?.join('; ') || biz.phone || '',
+        'All Public Emails': biz.emails?.join('; ') || biz.email || '',
         'Google Place ID': biz.googlePlaceId || '',
-        Domain: biz.domain,
-        Website: biz.websiteUrl,
-        Phone: biz.phone || '',
         'Rating / Reviews': `${biz.reviewRating || 'N/A'} (${biz.reviewCount || 0})`,
         'Website Health Score': audit ? `${audit.totalScore}/100` : 'Not Audited',
         'Contacts Discovered': contacts.map((c) => `${c.fullName} (${c.roleOrTitle})`).join('; '),
@@ -332,6 +390,7 @@ export function PipelineWorkflowView() {
         'Lead Score': score ? `${score.totalScore}/100` : 'Unscored',
         'Lead Grade': score?.band || '',
         'Qualification Status': biz.status,
+        'Source Evidence': biz.sourceUrls?.join('; ') || biz.sourceName || 'official_website',
         'Next Follow-Up Date': sched?.nextFollowUpDate || '',
       };
     });
@@ -341,7 +400,7 @@ export function PipelineWorkflowView() {
     const url = URL.createObjectURL(blob);
     const link = document.createElement('a');
     link.href = url;
-    link.setAttribute('download', `watech-pipeline-${Date.now()}.csv`);
+    link.setAttribute('download', `watech-leads-${Date.now()}.csv`);
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
@@ -855,21 +914,100 @@ export function PipelineWorkflowView() {
             </button>
           </div>
 
+          {/* Table Filters & Search */}
+          <div className="flex flex-col sm:flex-row items-stretch sm:items-center justify-between gap-3 pt-2">
+            <div className="flex items-center gap-2 flex-1 max-w-md">
+              <div className="relative w-full">
+                <Search className="w-3.5 h-3.5 text-slate-400 absolute left-3 top-1/2 -translate-y-1/2" />
+                <input
+                  type="text"
+                  placeholder="Filter by business name, domain, city..."
+                  value={resultsSearchQuery}
+                  onChange={(e) => {
+                    setResultsSearchQuery(e.target.value);
+                    setCurrentPage(1);
+                  }}
+                  className="w-full pl-8 pr-3 py-1.5 rounded-lg bg-slate-900 border border-border text-xs text-slate-200 placeholder:text-slate-500 focus:outline-none focus:border-blue-500"
+                />
+              </div>
+            </div>
+
+            <div className="flex items-center gap-2 flex-wrap">
+              <div className="flex items-center bg-slate-900 p-0.5 rounded-lg border border-border text-xs">
+                <button
+                  type="button"
+                  onClick={() => {
+                    setResultsFilterStatus('all');
+                    setCurrentPage(1);
+                  }}
+                  className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-all ${
+                    resultsFilterStatus === 'all'
+                      ? 'bg-slate-800 text-slate-100 shadow-sm'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  All ({pipelineResult.data.businesses.length})
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setResultsFilterStatus('qualified');
+                    setCurrentPage(1);
+                  }}
+                  className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-all ${
+                    resultsFilterStatus === 'qualified'
+                      ? 'bg-emerald-600/30 text-emerald-300 shadow-sm border border-emerald-500/30'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  Qualified
+                </button>
+                <button
+                  type="button"
+                  onClick={() => {
+                    setResultsFilterStatus('unqualified');
+                    setCurrentPage(1);
+                  }}
+                  className={`px-2.5 py-1 rounded-md text-[11px] font-medium transition-all ${
+                    resultsFilterStatus === 'unqualified'
+                      ? 'bg-amber-600/30 text-amber-300 shadow-sm border border-amber-500/30'
+                      : 'text-slate-400 hover:text-slate-200'
+                  }`}
+                >
+                  Hold / Review
+                </button>
+              </div>
+
+              <select
+                value={pageSize}
+                onChange={(e) => {
+                  setPageSize(Number(e.target.value));
+                  setCurrentPage(1);
+                }}
+                className="px-2 py-1 rounded-lg bg-slate-900 border border-border text-xs text-slate-300 focus:outline-none"
+              >
+                <option value={10}>10 / page</option>
+                <option value={25}>25 / page</option>
+                <option value={50}>50 / page</option>
+              </select>
+            </div>
+          </div>
+
           <div className="overflow-x-auto">
             <table className="w-full text-left border-collapse text-xs">
               <thead>
                 <tr className="border-b border-border bg-slate-900/40 text-slate-400">
                   <th className="py-3 px-4 font-medium">Business / ID</th>
-                  <th className="py-3 px-4 font-medium">Domain & Rating</th>
+                  <th className="py-3 px-4 font-medium">Digital Presence &amp; Footprint</th>
                   <th className="py-3 px-4 font-medium">Website Health</th>
-                  <th className="py-3 px-4 font-medium">Contacts & MX</th>
+                  <th className="py-3 px-4 font-medium">Contacts &amp; MX</th>
                   <th className="py-3 px-4 font-medium">Lead Score</th>
                   <th className="py-3 px-4 font-medium">Qualification Status</th>
                   <th className="py-3 px-4 font-medium text-right">Actions</th>
                 </tr>
               </thead>
               <tbody className="divide-y divide-border/60">
-                {pipelineResult.data.businesses.map((biz) => {
+                {paginatedResultBusinesses.map((biz) => {
                   const audit = pipelineResult.data.audits.find((a) => a.businessId === biz.id);
                   const score = pipelineResult.data.leadScores.find((s) => s.businessId === biz.id);
                   const contacts = pipelineResult.data.contacts.filter((c) => c.businessId === biz.id);
@@ -882,6 +1020,9 @@ export function PipelineWorkflowView() {
                         <span className="text-[10px] font-mono text-slate-500">ID: {biz.id}</span>
                         {biz.fullAddress && (
                           <p className="text-[11px] text-slate-400 truncate max-w-xs">{biz.fullAddress}</p>
+                        )}
+                        {biz.description && (
+                          <p className="text-[10px] text-slate-500 truncate max-w-xs italic mt-0.5">{biz.description}</p>
                         )}
                       </td>
 
@@ -902,6 +1043,128 @@ export function PipelineWorkflowView() {
                         {biz.reviewRating !== undefined && (
                           <div className="text-[11px] text-amber-400 mt-0.5">
                             ★ {biz.reviewRating} ({biz.reviewCount || 0} reviews)
+                          </div>
+                        )}
+
+                        {/* Social Profile Badges */}
+                        {biz.socialProfiles && (
+                          <div className="flex items-center gap-1 mt-1.5 flex-wrap">
+                            {biz.socialProfiles.linkedin && (
+                              <a
+                                href={biz.socialProfiles.linkedin}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[9px] px-1.5 py-0.5 rounded bg-blue-600/20 text-blue-300 hover:bg-blue-600/30 border border-blue-500/30 font-medium"
+                              >
+                                LinkedIn
+                              </a>
+                            )}
+                            {biz.socialProfiles.facebook && (
+                              <a
+                                href={biz.socialProfiles.facebook}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[9px] px-1.5 py-0.5 rounded bg-indigo-600/20 text-indigo-300 hover:bg-indigo-600/30 border border-indigo-500/30 font-medium"
+                              >
+                                FB
+                              </a>
+                            )}
+                            {biz.socialProfiles.instagram && (
+                              <a
+                                href={biz.socialProfiles.instagram}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[9px] px-1.5 py-0.5 rounded bg-pink-600/20 text-pink-300 hover:bg-pink-600/30 border border-pink-500/30 font-medium"
+                              >
+                                IG
+                              </a>
+                            )}
+                            {biz.socialProfiles.youtube && (
+                              <a
+                                href={biz.socialProfiles.youtube}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[9px] px-1.5 py-0.5 rounded bg-red-600/20 text-red-300 hover:bg-red-600/30 border border-red-500/30 font-medium"
+                              >
+                                YT
+                              </a>
+                            )}
+                            {biz.socialProfiles.twitter && (
+                              <a
+                                href={biz.socialProfiles.twitter}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[9px] px-1.5 py-0.5 rounded bg-slate-700 text-slate-200 hover:bg-slate-600 border border-slate-600 font-medium"
+                              >
+                                X
+                              </a>
+                            )}
+                            {biz.socialProfiles.tiktok && (
+                              <a
+                                href={biz.socialProfiles.tiktok}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[9px] px-1.5 py-0.5 rounded bg-cyan-600/20 text-cyan-300 hover:bg-cyan-600/30 border border-cyan-500/30 font-medium"
+                              >
+                                TikTok
+                              </a>
+                            )}
+                            {biz.socialProfiles.pinterest && (
+                              <a
+                                href={biz.socialProfiles.pinterest}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="text-[9px] px-1.5 py-0.5 rounded bg-rose-600/20 text-rose-300 hover:bg-rose-600/30 border border-rose-500/30 font-medium"
+                              >
+                                Pin
+                              </a>
+                            )}
+                          </div>
+                        )}
+
+                        {/* Discovered Subpage Pills */}
+                        {(biz.aboutPageUrl || biz.contactPageUrl || biz.servicesPageUrl || biz.teamPageUrl) && (
+                          <div className="flex items-center gap-1 mt-1 text-[9px] text-slate-400 flex-wrap">
+                            {biz.aboutPageUrl && (
+                              <a
+                                href={biz.aboutPageUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-1 py-0.5 rounded bg-slate-800 text-slate-300 border border-border hover:text-blue-400"
+                              >
+                                About
+                              </a>
+                            )}
+                            {biz.contactPageUrl && (
+                              <a
+                                href={biz.contactPageUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-1 py-0.5 rounded bg-slate-800 text-slate-300 border border-border hover:text-blue-400"
+                              >
+                                Contact
+                              </a>
+                            )}
+                            {biz.servicesPageUrl && (
+                              <a
+                                href={biz.servicesPageUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-1 py-0.5 rounded bg-slate-800 text-slate-300 border border-border hover:text-blue-400"
+                              >
+                                Services
+                              </a>
+                            )}
+                            {biz.teamPageUrl && (
+                              <a
+                                href={biz.teamPageUrl}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                className="px-1 py-0.5 rounded bg-slate-800 text-slate-300 border border-border hover:text-blue-400"
+                              >
+                                Team
+                              </a>
+                            )}
                           </div>
                         )}
                       </td>
@@ -950,6 +1213,19 @@ export function PipelineWorkflowView() {
                               <div className="text-[11px] text-slate-400 flex items-center gap-1">
                                 <Phone className="w-3 h-3 text-slate-400 shrink-0" />
                                 <span>{biz.phone}</span>
+                              </div>
+                            )}
+                            {biz.contactFormUrl && (
+                              <div className="text-[10px] text-slate-400 flex items-center gap-1">
+                                <span className="text-slate-500">Form:</span>
+                                <a
+                                  href={biz.contactFormUrl}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  className="text-cyan-400 hover:underline truncate max-w-[120px]"
+                                >
+                                  Inbound Form
+                                </a>
                               </div>
                             )}
                           </div>
@@ -1003,6 +1279,37 @@ export function PipelineWorkflowView() {
                 })}
               </tbody>
             </table>
+          </div>
+
+          {/* Table Pagination Controls */}
+          <div className="pt-3 border-t border-border flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
+            <div>
+              Showing <span className="font-semibold text-slate-200">{Math.min(filteredResultBusinesses.length, (currentPage - 1) * pageSize + 1)}</span> to{' '}
+              <span className="font-semibold text-slate-200">{Math.min(filteredResultBusinesses.length, currentPage * pageSize)}</span> of{' '}
+              <span className="font-semibold text-slate-200">{filteredResultBusinesses.length}</span> leads
+            </div>
+
+            <div className="flex items-center gap-2">
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.max(1, p - 1))}
+                disabled={currentPage <= 1}
+                className="px-3 py-1 rounded-lg bg-slate-900 border border-border text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-800 transition-colors"
+              >
+                Previous
+              </button>
+              <span className="px-2 font-mono text-slate-300">
+                Page {currentPage} of {totalResultPages}
+              </span>
+              <button
+                type="button"
+                onClick={() => setCurrentPage((p) => Math.min(totalResultPages, p + 1))}
+                disabled={currentPage >= totalResultPages}
+                className="px-3 py-1 rounded-lg bg-slate-900 border border-border text-slate-300 disabled:opacity-40 disabled:cursor-not-allowed hover:bg-slate-800 transition-colors"
+              >
+                Next
+              </button>
+            </div>
           </div>
         </div>
       )}

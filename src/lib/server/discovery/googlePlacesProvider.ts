@@ -3,10 +3,13 @@ import type {
   DiscoveryParams,
   DiscoveryResult,
   DiscoveredBusinessRaw,
+  DiscoverySourceType,
 } from './types';
 
 export class GooglePlacesDiscoveryProvider implements BusinessDiscoveryProvider {
   readonly name = 'google_places';
+  readonly displayName = 'Google Places (New)';
+  readonly sourceType: DiscoverySourceType = 'licensed_places_api';
 
   isConfigured(): boolean {
     const key = process.env.GOOGLE_MAPS_API_KEY?.trim();
@@ -218,9 +221,14 @@ export class GooglePlacesDiscoveryProvider implements BusinessDiscoveryProvider 
       }
     }
 
+    const placeUrl = place.id ? `https://maps.google.com/?cid=${place.id}` : websiteUrl;
+
     return {
       providerId: place.id,
       providerName: 'google_places',
+      sourceName: this.displayName,
+      sourceUrl: placeUrl,
+      sourceUrls: placeUrl ? [placeUrl] : [],
       name,
       formattedAddress: fullAddress,
       city,
@@ -234,6 +242,8 @@ export class GooglePlacesDiscoveryProvider implements BusinessDiscoveryProvider 
       userRatingCount: typeof place.userRatingCount === 'number' ? place.userRatingCount : undefined,
       businessStatus: place.businessStatus || undefined,
       primaryType: place.primaryType || undefined,
+      confidenceIndicator: 90,
+      verificationStatus: 'verified',
       locationCoordinates: place.location
         ? {
             latitude: place.location.latitude,

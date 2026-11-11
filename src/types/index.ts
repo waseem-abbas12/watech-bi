@@ -104,6 +104,32 @@ export interface MarketArea {
   createdAt: string;
 }
 
+export interface SocialProfiles {
+  linkedin?: string;
+  facebook?: string;
+  instagram?: string;
+  youtube?: string;
+  twitter?: string;
+  tiktok?: string;
+  pinterest?: string;
+  other?: string[];
+}
+
+export interface DiscoveredSubpages {
+  aboutPageUrl?: string;
+  contactPageUrl?: string;
+  servicesPageUrl?: string;
+  teamPageUrl?: string;
+  careersPageUrl?: string;
+  privacyPolicyUrl?: string;
+}
+
+export interface BusinessHours {
+  regularHours?: string[];
+  isOpenNow?: boolean;
+  rawText?: string;
+}
+
 export interface Business {
   id: string;
   tenantId?: string;
@@ -123,6 +149,36 @@ export interface Business {
   postalCode?: string;
   serviceArea?: string;
   businessModel: string;
+  industry?: string;
+  subcategory?: string;
+  description?: string;
+  latitude?: number;
+  longitude?: number;
+  branchInfo?: Record<string, any>;
+  
+  // Digital Presence & Subpages
+  aboutPageUrl?: string;
+  contactPageUrl?: string;
+  servicesPageUrl?: string;
+  teamPageUrl?: string;
+  socialProfiles?: SocialProfiles;
+
+  // Contact Details
+  phoneNumbers?: string[];
+  emails?: string[];
+  contactFormUrl?: string;
+  businessHours?: BusinessHours;
+
+  // Business Intelligence
+  services?: string[];
+
+  // Evidence & Verification
+  sourceUrls?: string[];
+  sourceName?: string;
+  discoveryTimestamp?: string;
+  fieldVerificationStatus?: Record<string, VerificationStatus>;
+  confidenceIndicator?: number;
+
   foundingYear?: number;
   teamSizeEstimate?: string;
   fleetCapacity?: string;
