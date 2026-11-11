@@ -318,16 +318,23 @@ export function PipelineWorkflowView() {
 
   // Filtered and paginated pipeline results
   const filteredResultBusinesses = useMemo(() => {
-    if (!pipelineResult?.data?.businesses) return [];
+    if (!pipelineResult?.data?.businesses || !Array.isArray(pipelineResult.data.businesses)) return [];
     return pipelineResult.data.businesses.filter((biz) => {
-      const q = resultsSearchQuery.toLowerCase().trim();
+      if (!biz) return false;
+      const q = (resultsSearchQuery || '').toLowerCase().trim();
+      const bizName = (biz.officialName || (biz as any).name || '').toLowerCase();
+      const bizDomain = (biz.domain || '').toLowerCase();
+      const bizCity = (biz.city || '').toLowerCase();
+      const bizPhone = String(biz.phone || '');
+      const bizIndustry = (biz.industry || '').toLowerCase();
+
       const matchesSearch =
         !q ||
-        biz.officialName.toLowerCase().includes(q) ||
-        (biz.domain && biz.domain.toLowerCase().includes(q)) ||
-        (biz.city && biz.city.toLowerCase().includes(q)) ||
-        (biz.phone && biz.phone.includes(q)) ||
-        (biz.industry && biz.industry.toLowerCase().includes(q));
+        bizName.includes(q) ||
+        bizDomain.includes(q) ||
+        bizCity.includes(q) ||
+        bizPhone.includes(q) ||
+        bizIndustry.includes(q);
 
       const matchesStatus =
         resultsFilterStatus === 'all' ||
@@ -1008,15 +1015,19 @@ export function PipelineWorkflowView() {
               </thead>
               <tbody className="divide-y divide-border/60">
                 {paginatedResultBusinesses.map((biz) => {
-                  const audit = pipelineResult.data.audits.find((a) => a.businessId === biz.id);
-                  const score = pipelineResult.data.leadScores.find((s) => s.businessId === biz.id);
-                  const contacts = pipelineResult.data.contacts.filter((c) => c.businessId === biz.id);
+                  if (!biz) return null;
+                  const audits = pipelineResult?.data?.audits || [];
+                  const leadScores = pipelineResult?.data?.leadScores || [];
+                  const contactsList = pipelineResult?.data?.contacts || [];
+                  const audit = audits.find((a) => a?.businessId === biz.id);
+                  const score = leadScores.find((s) => s?.businessId === biz.id);
+                  const contacts = contactsList.filter((c) => c?.businessId === biz.id);
                   const isQualified = biz.status === 'qualified';
 
                   return (
                     <tr key={biz.id} className="hover:bg-slate-900/50 transition-colors">
                       <td className="py-3 px-4">
-                        <div className="font-semibold text-slate-100">{biz.officialName}</div>
+                        <div className="font-semibold text-slate-100">{biz.officialName || (biz as any).name || 'Unnamed Business'}</div>
                         <span className="text-[10px] font-mono text-slate-500">ID: {biz.id}</span>
                         {biz.fullAddress && (
                           <p className="text-[11px] text-slate-400 truncate max-w-xs">{biz.fullAddress}</p>
@@ -1034,7 +1045,7 @@ export function PipelineWorkflowView() {
                             rel="noopener noreferrer"
                             className="text-blue-400 hover:underline flex items-center gap-1 font-mono"
                           >
-                            {biz.domain}
+                            {biz.domain || biz.websiteUrl}
                             <ExternalLink className="w-3 h-3" />
                           </a>
                         ) : (
@@ -1184,7 +1195,7 @@ export function PipelineWorkflowView() {
                               {audit.totalScore}/100
                             </span>
                             <span className="text-slate-500 text-[11px] ml-1.5">
-                              ({audit.findings.length} findings)
+                              ({audit.findings?.length || 0} findings)
                             </span>
                           </div>
                         ) : (
@@ -1197,16 +1208,16 @@ export function PipelineWorkflowView() {
                           <div className="space-y-1">
                             <div className="flex items-center gap-1.5 flex-wrap">
                               <span className="font-semibold text-slate-100">
-                                {contacts.find(c => c.isDecisionMaker)?.fullName || contacts[0].fullName}
+                                {contacts.find(c => c?.isDecisionMaker)?.fullName || contacts[0]?.fullName || 'Public Contact'}
                               </span>
                               <span className="text-[10px] px-1.5 py-0.5 rounded bg-brand-500/15 text-brand-400 font-medium">
-                                {contacts.find(c => c.isDecisionMaker)?.roleOrTitle || contacts[0].roleOrTitle}
+                                {contacts.find(c => c?.isDecisionMaker)?.roleOrTitle || contacts[0]?.roleOrTitle || 'Office'}
                               </span>
                             </div>
-                            {(contacts.find(c => c.email)?.email) && (
+                            {(contacts.find(c => c?.email)?.email) && (
                               <div className="text-[11px] text-slate-300 flex items-center gap-1">
                                 <Mail className="w-3 h-3 text-cyan-400 shrink-0" />
-                                <span className="font-mono">{contacts.find(c => c.email)?.email}</span>
+                                <span className="font-mono">{contacts.find(c => c?.email)?.email}</span>
                               </div>
                             )}
                             {biz.phone && (
@@ -1337,14 +1348,15 @@ export function PipelineWorkflowView() {
             <div>
               <h4 className="text-xs font-semibold uppercase text-slate-400 mb-2">Technical Audit Findings</h4>
               {(() => {
-                const audit = pipelineResult.data.audits.find((a) => a.businessId === selectedBusiness.id);
+                const audits = pipelineResult?.data?.audits || [];
+                const audit = audits.find((a) => a?.businessId === selectedBusiness.id);
                 if (!audit) return <p className="text-xs text-slate-500">No website audit performed.</p>;
 
                 return (
                   <div className="space-y-2 max-h-48 overflow-y-auto">
-                    {audit.findings.length > 0 ? (
+                    {audit.findings && audit.findings.length > 0 ? (
                       audit.findings.map((f) => (
-                        <div key={f.id} className="p-2.5 rounded-lg bg-slate-900 border border-border text-xs">
+                        <div key={f.id || Math.random()} className="p-2.5 rounded-lg bg-slate-900 border border-border text-xs">
                           <span className="font-semibold text-rose-400">{f.observation}</span>
                           <p className="text-slate-400 text-[11px] mt-0.5">{f.customerImpact}</p>
                         </div>
@@ -1361,11 +1373,11 @@ export function PipelineWorkflowView() {
             <div>
               <h4 className="text-xs font-semibold uppercase text-slate-400 mb-2">Service Opportunities</h4>
               <div className="space-y-1.5 max-h-48 overflow-y-auto">
-                {pipelineResult.data.opportunities
-                  .filter((o) => o.businessId === selectedBusiness.id)
+                {(pipelineResult?.data?.opportunities || [])
+                  .filter((o) => o?.businessId === selectedBusiness.id)
                   .map((opp) => (
                     <div
-                      key={opp.id}
+                      key={opp.id || Math.random()}
                       className="p-2 rounded-lg bg-slate-900 border border-border text-xs flex justify-between"
                     >
                       <span className="text-slate-200">{opp.identifiedProblem}</span>

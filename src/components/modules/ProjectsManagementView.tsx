@@ -62,10 +62,13 @@ export function ProjectsManagementView() {
   const industries = Array.from(new Set(projects.map((p) => p.industryNiche).filter(Boolean)));
 
   const filteredProjects = projects.filter((p) => {
+    if (!p) return false;
+    const q = (searchQuery || '').toLowerCase().trim();
     const matchesSearch =
-      p.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.cityArea.toLowerCase().includes(searchQuery.toLowerCase()) ||
-      p.industryNiche.toLowerCase().includes(searchQuery.toLowerCase());
+      !q ||
+      (p.name || '').toLowerCase().includes(q) ||
+      (p.cityArea || '').toLowerCase().includes(q) ||
+      (p.industryNiche || '').toLowerCase().includes(q);
     const matchesIndustry = selectedIndustry === 'all' || p.industryNiche === selectedIndustry;
     return matchesSearch && matchesIndustry;
   });

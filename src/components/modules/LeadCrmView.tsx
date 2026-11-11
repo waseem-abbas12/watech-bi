@@ -581,9 +581,9 @@ export function LeadCrmView() {
     return businesses.filter(b => {
       if (stageFilter !== 'all' && b.status !== stageFilter) return false;
       if (searchQuery.trim()) {
-        const q = searchQuery.toLowerCase();
-        const matchesName = b.officialName.toLowerCase().includes(q) || (b.brandName || '').toLowerCase().includes(q);
-        const matchesDomain = b.domain.toLowerCase().includes(q);
+        const q = searchQuery.toLowerCase().trim();
+        const matchesName = (b.officialName || (b as any).name || '').toLowerCase().includes(q) || (b.brandName || '').toLowerCase().includes(q);
+        const matchesDomain = (b.domain || '').toLowerCase().includes(q);
         const matchesCity = (b.city || '').toLowerCase().includes(q);
         const matchesOwner = (b.ownerManagerName || '').toLowerCase().includes(q);
         if (!matchesName && !matchesDomain && !matchesCity && !matchesOwner) return false;

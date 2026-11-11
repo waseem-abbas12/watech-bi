@@ -141,9 +141,9 @@ export function ContactDiscoveryView() {
       if (filterReview !== 'all' && (c.reviewStatus || 'approved') !== filterReview) return false;
       if (filterSource !== 'all' && c.contactSourceLabel !== filterSource) return false;
       if (searchQuery.trim().length > 0) {
-        const q = searchQuery.toLowerCase();
-        const matchesName = c.fullName.toLowerCase().includes(q);
-        const matchesRole = c.roleOrTitle.toLowerCase().includes(q);
+        const q = searchQuery.toLowerCase().trim();
+        const matchesName = (c.fullName || '').toLowerCase().includes(q);
+        const matchesRole = (c.roleOrTitle || '').toLowerCase().includes(q);
         const matchesEmail = (c.email || '').toLowerCase().includes(q);
         if (!matchesName && !matchesRole && !matchesEmail) return false;
       }

@@ -115,10 +115,13 @@ export function LeadIntelligenceView() {
   const filteredLeads = useMemo(() => {
     return enrichedLeads.filter((item) => {
       const b = item.business;
+      if (!b) return false;
+      const q = (searchQuery || '').toLowerCase().trim();
       const matchesSearch =
-        b.officialName.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        b.domain.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        (b.city && b.city.toLowerCase().includes(searchQuery.toLowerCase()));
+        !q ||
+        (b.officialName || (b as any).name || '').toLowerCase().includes(q) ||
+        (b.domain || '').toLowerCase().includes(q) ||
+        (b.city && b.city.toLowerCase().includes(q));
 
       if (!matchesSearch) return false;
 
@@ -142,13 +145,13 @@ export function LeadIntelligenceView() {
         return sortOrder === 'desc' ? scoreB - scoreA : scoreA - scoreB;
       }
       if (sortBy === 'name') {
-        const nameA = a.business.officialName.toLowerCase();
-        const nameB = b.business.officialName.toLowerCase();
+        const nameA = (a.business?.officialName || (a.business as any)?.name || '').toLowerCase();
+        const nameB = (b.business?.officialName || (b.business as any)?.name || '').toLowerCase();
         return sortOrder === 'desc' ? nameB.localeCompare(nameA) : nameA.localeCompare(nameB);
       }
       if (sortBy === 'city') {
-        const cityA = (a.business.city || '').toLowerCase();
-        const cityB = (b.business.city || '').toLowerCase();
+        const cityA = (a.business?.city || '').toLowerCase();
+        const cityB = (b.business?.city || '').toLowerCase();
         return sortOrder === 'desc' ? cityB.localeCompare(cityA) : cityA.localeCompare(cityB);
       }
       return 0;

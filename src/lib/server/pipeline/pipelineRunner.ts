@@ -24,6 +24,7 @@ import { calculateLeadScore } from '@/lib/engines/scoring';
 import { calculateDueDate } from '@/lib/engines/followUpEngine';
 import { ServerTenantRepository } from '../tenantRepository';
 import { discoverCompleteDigitalFootprint } from './websiteExtractor';
+import { footprintManager } from '../digital-footprint/footprintManager';
 
 const resolveMx = promisify(dns.resolveMx);
 
@@ -690,43 +691,47 @@ export async function executePipeline(input: PipelineExecuteInput): Promise<Pipe
       while (attempt < maxAttempts) {
         attempt++;
         try {
-          const auditResult = await inspectWebsiteInternal(biz.websiteUrl, biz.id, projectId);
-          if (auditResult.audit) {
-            return {
-              bizId: biz.id,
-              status: 'succeeded' as const,
-              audit: auditResult.audit,
-              html: auditResult.html,
-              retriesUsed: attempt - 1,
-            };
+          const footprint = await footprintManager.extractFootprintForBusiness(biz);
+          const audit = footprintManager.toWebsiteAuditModel(footprint, biz);
+
+          // Enrich business entity with verified footprint findings
+          biz.socialProfiles = footprint.socialProfiles;
+          if (footprint.coreServices.length > 0) biz.services = footprint.coreServices;
+          if (footprint.subpages.contactPageUrl) biz.contactPageUrl = footprint.subpages.contactPageUrl;
+          if (footprint.subpages.aboutPageUrl) biz.aboutPageUrl = footprint.subpages.aboutPageUrl;
+          if (footprint.subpages.servicesPageUrl) biz.servicesPageUrl = footprint.subpages.servicesPageUrl;
+          if (footprint.subpages.teamPageUrl) biz.teamPageUrl = footprint.subpages.teamPageUrl;
+          if (footprint.conversionInfrastructure.contactFormUrl) biz.contactFormUrl = footprint.conversionInfrastructure.contactFormUrl;
+          if (footprint.businessHours) biz.businessHours = footprint.businessHours;
+          if (footprint.sourceUrls && footprint.sourceUrls.length > 0) {
+            biz.sourceUrls = Array.from(new Set([...(biz.sourceUrls || []), ...footprint.sourceUrls]));
           }
 
-          // If retryable and attempts left, back off and retry
-          if (auditResult.retryable && attempt < maxAttempts) {
-            stage3Retries++;
-            await new Promise((r) => setTimeout(r, 200 * attempt));
-            continue;
-          }
-
-          return { bizId: biz.id, status: 'failed' as const, error: auditResult.error || 'Inspection failed' };
+          return {
+            bizId: biz.id,
+            status: 'succeeded' as const,
+            audit,
+            html: (footprint as any).rawHtml || '',
+            retriesUsed: attempt - 1,
+          };
         } catch (err: any) {
           if (attempt < maxAttempts) {
             stage3Retries++;
             await new Promise((r) => setTimeout(r, 200 * attempt));
             continue;
           }
-          return { bizId: biz.id, status: 'failed' as const, error: err.message || 'Inspection error' };
+          return { bizId: biz.id, status: 'failed' as const, html: '', error: err.message || 'Inspection error' };
         }
       }
 
-      return { bizId: biz.id, status: 'failed' as const };
+      return { bizId: biz.id, status: 'failed' as const, html: '' };
     });
 
     for (const res of auditResults) {
       if (res.status === 'succeeded' && res.audit) {
         audits.push(res.audit);
-        if (res.html) {
-          htmlCache.set(res.bizId, res.html);
+        if ('html' in res && res.html) {
+          htmlCache.set(res.bizId, res.html as string);
         }
         const b = businesses.find((x) => x.id === res.bizId);
         if (b) b.status = 'audited';

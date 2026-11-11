@@ -220,14 +220,19 @@ export function BusinessDiscoveryView() {
   };
 
   const filteredBusinesses = businesses.filter(b => {
+    if (!b) return false;
     if (statusFilter !== 'all' && b.status !== statusFilter) return false;
     if (!searchQuery) return true;
-    const query = searchQuery.toLowerCase();
+    const query = searchQuery.toLowerCase().trim();
+    const name = (b.officialName || (b as any).name || '').toLowerCase();
+    const dom = (b.domain || '').toLowerCase();
+    const city = (b.city || '').toLowerCase();
+    const owner = (b.ownerManagerName || '').toLowerCase();
     return (
-      b.officialName.toLowerCase().includes(query) ||
-      b.domain.toLowerCase().includes(query) ||
-      (b.city && b.city.toLowerCase().includes(query)) ||
-      (b.ownerManagerName && b.ownerManagerName.toLowerCase().includes(query))
+      name.includes(query) ||
+      dom.includes(query) ||
+      city.includes(query) ||
+      owner.includes(query)
     );
   });
 
