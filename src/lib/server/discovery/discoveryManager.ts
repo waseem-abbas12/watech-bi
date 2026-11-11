@@ -10,6 +10,7 @@ import { googlePlacesProvider } from './googlePlacesProvider';
 import { openCorporatesProvider } from './openCorporatesProvider';
 import { companiesHouseProvider } from './companiesHouseProvider';
 import { searchEngineProvider } from './searchEngineProvider';
+import { freeWebScraperProvider } from './freeWebScraperProvider';
 import {
   filterGeographic,
   filterIndustry,
@@ -21,6 +22,7 @@ class DiscoveryManager {
   private providers: Map<string, BusinessDiscoveryProvider> = new Map();
 
   constructor() {
+    this.registerProvider(freeWebScraperProvider);
     this.registerProvider(googlePlacesProvider);
     this.registerProvider(openCorporatesProvider);
     this.registerProvider(companiesHouseProvider);

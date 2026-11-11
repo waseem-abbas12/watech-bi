@@ -25,6 +25,7 @@ import { calculateDueDate } from '@/lib/engines/followUpEngine';
 import { ServerTenantRepository } from '../tenantRepository';
 import { discoverCompleteDigitalFootprint } from './websiteExtractor';
 import { footprintManager } from '../digital-footprint/footprintManager';
+import { decisionMakerManager } from '../decision-makers/manager';
 
 const resolveMx = promisify(dns.resolveMx);
 
@@ -769,26 +770,12 @@ export async function executePipeline(input: PipelineExecuteInput): Promise<Pipe
     const s4Start = Date.now();
     let contactsExtractedCount = 0;
 
-    const executiveOfficerPool = [
-      { name: 'David Miller', role: 'President & Founder' },
-      { name: 'Marcus Vance', role: 'Owner & Managing Director' },
-      { name: 'Carlos Rodriguez', role: 'General Manager & Partner' },
-      { name: 'Robert Jenkins', role: 'President & CEO' },
-      { name: 'Thomas Hayes', role: 'Director of Operations' },
-      { name: 'Richard Sterling', role: 'Founder & Principal' },
-      { name: 'Anthony Rossi', role: 'Managing Partner' },
-      { name: 'William Kaufman', role: 'Executive Vice President' },
-      { name: 'James Callahan', role: 'General Manager' },
-      { name: 'Steven Brooks', role: 'Owner & Founder' },
-    ];
-
     for (let bIdx = 0; bIdx < businesses.length; bIdx++) {
       const biz = businesses[bIdx];
       const html = htmlCache.get(biz.id);
       const bizContacts: Contact[] = [];
-      const cleanDomain = biz.domain || (biz.websiteUrl ? new URL(biz.websiteUrl).hostname.replace(/^www\./, '') : 'contractor-hub.com');
 
-      // 1. Discover complete digital footprint & scrape contacts from HTML if website was reached
+      // 1. Discover complete digital footprint if website was reached
       if (html && biz.websiteUrl) {
         try {
           const footprint = await discoverCompleteDigitalFootprint(biz.websiteUrl, html);
@@ -818,36 +805,8 @@ export async function executePipeline(input: PipelineExecuteInput): Promise<Pipe
           biz.sourceName = 'official_business_website';
           biz.discoveryTimestamp = new Date().toISOString();
           biz.confidenceIndicator = 0.95;
-
-          // Merge any discovered additional emails
-          for (const extraEmail of footprint.additionalEmails) {
-            if (!bizContacts.some((c) => c.email?.toLowerCase() === extraEmail.toLowerCase())) {
-              bizContacts.push({
-                id: `ct-extra-${extraEmail.replace(/[^a-z0-9]/gi, '-').substring(0, 30)}`,
-                businessId: biz.id,
-                projectId,
-                fullName: `${biz.officialName} Support`,
-                roleOrTitle: 'Customer Care & Dispatch',
-                email: extraEmail,
-                phone: biz.phone,
-                company: biz.officialName,
-                verificationStatus: 'unverified',
-                confidence: 0.85,
-                contactSourceLabel: 'official_company_source',
-                isDecisionMaker: false,
-                decisionMakerTier: 'general_staff',
-              });
-            }
-          }
         } catch (footprintErr) {
           console.warn(`Footprint error on ${biz.id}:`, footprintErr);
-        }
-
-        const extracted = extractContactsFromHtml(html, biz.websiteUrl, biz.id, projectId, biz.officialName);
-        for (const item of extracted) {
-          if (!bizContacts.some((c) => c.email && c.email.toLowerCase() === item.email?.toLowerCase())) {
-            bizContacts.push(item);
-          }
         }
       } else {
         // Fallback digital footprint when website was unreachable
@@ -865,54 +824,32 @@ export async function executePipeline(input: PipelineExecuteInput): Promise<Pipe
         biz.services = [biz.industry ? `${biz.industry} Installation & Repair` : 'Emergency Service'];
       }
 
-      // 2. Ensure verified Executive Decision-Maker (Owner / President) is always cataloged
-      const hasDecisionMaker = bizContacts.some((c) => c.isDecisionMaker && c.email);
-      if (!hasDecisionMaker) {
-        const officer = executiveOfficerPool[bIdx % executiveOfficerPool.length];
-        const officerName = biz.ownerManagerName || officer.name;
-        const officerRole = biz.ownerManagerRole || officer.role;
-        const firstName = officerName.split(' ')[0].toLowerCase().replace(/[^a-z]/g, '');
-        const officerEmail = biz.email || `${firstName}@${cleanDomain}`;
-
-        bizContacts.push({
-          id: `ct-exec-${biz.id}`,
-          businessId: biz.id,
-          projectId,
-          fullName: officerName,
-          roleOrTitle: officerRole,
-          email: officerEmail,
-          phone: biz.phone,
-          company: biz.officialName,
-          verificationStatus: 'verified',
-          confidence: 0.95,
-          contactSourceLabel: 'official_company_source',
-          isDecisionMaker: true,
-          decisionMakerTier: 'tier1_executive',
-          notes: 'Executive officer identified for commercial outreach',
+      // 2. Discover authentic decision-makers and business contacts from authorized sources
+      try {
+        const dmResult = await decisionMakerManager.discoverDecisionMakersForBusiness(biz, {
+          aboutPageUrl: biz.aboutPageUrl,
+          teamPageUrl: biz.teamPageUrl,
+          contactPageUrl: biz.contactPageUrl,
         });
+
+        const discoveredContacts = decisionMakerManager.toPipelineContacts(dmResult, projectId);
+        for (const dc of discoveredContacts) {
+          if (!bizContacts.some((c) => c.fullName.toLowerCase() === dc.fullName.toLowerCase())) {
+            bizContacts.push(dc);
+          }
+        }
+      } catch (dmErr) {
+        console.warn(`Decision-maker discovery error on ${biz.id}:`, dmErr);
       }
 
-      // 3. Ensure Dispatch / Customer Care Reception contact is cataloged
-      const hasDispatch = bizContacts.some(
-        (c) => c.roleOrTitle.toLowerCase().includes('dispatch') || c.roleOrTitle.toLowerCase().includes('office')
-      );
-      if (!hasDispatch && biz.phone) {
-        bizContacts.push({
-          id: `ct-reception-${biz.id}`,
-          businessId: biz.id,
-          projectId,
-          fullName: `${biz.officialName} Dispatch Reception`,
-          roleOrTitle: 'Office & Dispatch Reception',
-          email: `service@${cleanDomain}`,
-          phone: biz.phone,
-          company: biz.officialName,
-          verificationStatus: 'verified',
-          confidence: 0.9,
-          contactSourceLabel: 'official_company_source',
-          isDecisionMaker: false,
-          decisionMakerTier: 'general_staff',
-          notes: 'Switchboard reception and service booking contact',
-        });
+      // 3. Include any publicly listed website contacts extracted from HTML
+      if (html && biz.websiteUrl) {
+        const extracted = extractContactsFromHtml(html, biz.websiteUrl, biz.id, projectId, biz.officialName);
+        for (const item of extracted) {
+          if (!bizContacts.some((c) => c.email && c.email.toLowerCase() === item.email?.toLowerCase())) {
+            bizContacts.push(item);
+          }
+        }
       }
 
       contacts.push(...bizContacts);

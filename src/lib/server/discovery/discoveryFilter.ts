@@ -80,6 +80,24 @@ export function normalizeDomain(urlOrDomain?: string): string | undefined {
   }
 }
 
+const US_STATE_MAP: Record<string, string> = {
+  texas: 'tx', tx: 'texas',
+  california: 'ca', ca: 'california',
+  florida: 'fl', fl: 'florida',
+  'new york': 'ny', ny: 'new york',
+  ohio: 'oh', oh: 'ohio',
+  illinois: 'il', il: 'illinois',
+  pennsylvania: 'pa', pa: 'pennsylvania',
+  georgia: 'ga', ga: 'georgia',
+  'north carolina': 'nc', nc: 'north carolina',
+  michigan: 'mi', mi: 'michigan',
+  arizona: 'az', az: 'arizona',
+  colorado: 'co', co: 'colorado',
+  washington: 'wa', wa: 'washington',
+  virginia: 'va', va: 'virginia',
+  'new jersey': 'nj', nj: 'new jersey',
+};
+
 /**
  * Strict Geographic Filter
  * Confirms whether candidate business genuinely resides in target boundaries.
@@ -123,9 +141,10 @@ export function filterGeographic(
     }
   }
 
-  // 2. City Check (Strict Boundary)
-  if (reqCity) {
+  // 2. City Check (Strict Boundary when distinct from State/Country)
+  if (reqCity && reqCity !== reqState && reqCity !== reqCountry) {
     const cityMatches =
+      !candCity ||
       candCity === reqCity ||
       candCity.includes(reqCity) ||
       reqCity.includes(candCity) ||
@@ -143,11 +162,18 @@ export function filterGeographic(
   // 3. State / Province Check (if provided)
   let stateMatches = true;
   if (reqState && candState) {
+    const mappedCandState = US_STATE_MAP[candState] || candState;
+    const mappedReqState = US_STATE_MAP[reqState] || reqState;
+
     stateMatches =
       candState === reqState ||
+      mappedCandState === reqState ||
+      candState === mappedReqState ||
+      mappedCandState === mappedReqState ||
       candState.includes(reqState) ||
       reqState.includes(candState) ||
-      fullAddress.includes(reqState);
+      fullAddress.includes(reqState) ||
+      Boolean(US_STATE_MAP[reqState] && fullAddress.includes(US_STATE_MAP[reqState]));
 
     if (!stateMatches) {
       return {
